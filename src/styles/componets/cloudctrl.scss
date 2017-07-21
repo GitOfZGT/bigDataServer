@@ -1,0 +1,47 @@
+.licon{
+    width:50px;
+    font-size: 35px;
+    i{
+        vertical-align: top;
+        margin-top:8px;
+    }
+}
+.ricon{
+    width:45px;
+    i{
+        vertical-align: top;
+        margin-top:8px;
+        width:40px;
+        height: 40px;
+        line-height: 42px;
+        text-align: center;
+        border-radius: 100%;
+        // border:1px solid #ddd;
+        background: #f2f2f2;
+        &:hover{
+            background: $green;
+            color: #ffffff;
+            cursor: pointer;
+        }
+    }
+}
+.ctrl-header{
+    font-weight: normal;
+    padding:8px 0;
+    border-bottom: 1px solid #ddd;
+}
+.ctrl-title{
+    display: inline-block;
+    border-left:3px solid $yellow;
+    padding-left:18px;
+    font-size: 20px;
+}
+.ctrl-dict{
+    color: #999999;
+}
+.ctrl-content{
+    &:hover{
+        cursor: pointer;
+        color: $green;
+    }
+}

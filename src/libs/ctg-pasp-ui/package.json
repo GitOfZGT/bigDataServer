@@ -1,0 +1,80 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "ctg-pasp-ui@^1.1.0",
+        "scope": null,
+        "escapedName": "ctg-pasp-ui",
+        "name": "ctg-pasp-ui",
+        "rawSpec": "^1.1.0",
+        "spec": ">=1.1.0 <2.0.0",
+        "type": "range"
+      },
+      "G:\\www\\myprojects\\ideal-privateCloud(v2.00)"
+    ]
+  ],
+  "_cnpm_publish_time": 1497943914099,
+  "_from": "ctg-pasp-ui@>=1.1.0 <2.0.0",
+  "_id": "ctg-pasp-ui@1.2.24",
+  "_inCache": true,
+  "_location": "/ctg-pasp-ui",
+  "_nodeVersion": "6.9.3",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/ctg-pasp-ui-1.2.24.tgz_1497943913682_0.5070914865937084"
+  },
+  "_npmUser": {
+    "name": "ctg-pasp",
+    "email": "17749706315@189.cn"
+  },
+  "_npmVersion": "3.10.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "ctg-pasp-ui@^1.1.0",
+    "scope": null,
+    "escapedName": "ctg-pasp-ui",
+    "name": "ctg-pasp-ui",
+    "rawSpec": "^1.1.0",
+    "spec": ">=1.1.0 <2.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/ctg-pasp-ui/download/ctg-pasp-ui-1.2.24.tgz",
+  "_shasum": "20b1178e129352e467b981eeb4a34a1757f4e6e8",
+  "_shrinkwrap": null,
+  "_spec": "ctg-pasp-ui@^1.1.0",
+  "_where": "G:\\www\\myprojects\\ideal-privateCloud(v2.00)",
+  "author": {
+    "name": "中国电信"
+  },
+  "dependencies": {},
+  "description": "中国电信云平台前端框架",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "20b1178e129352e467b981eeb4a34a1757f4e6e8",
+    "size": 6264647,
+    "noattachment": false,
+    "tarball": "http://registry.npm.taobao.org/ctg-pasp-ui/download/ctg-pasp-ui-1.2.24.tgz"
+  },
+  "keywords": [
+    "angular",
+    "bootstrap"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "ctg-pasp",
+      "email": "17749706315@189.cn"
+    }
+  ],
+  "name": "ctg-pasp-ui",
+  "optionalDependencies": {},
+  "publish_time": 1497943914099,
+  "readme": "##中国电信云平台前端框架\n基于AngularJS 与 Bootstrap\n\n### 安装\n\tnpm install ctg-pasp-ui\n\t\n### 文件说明\n- pasp.min.css PASP UI CSS文件\n- framework.min.js 第三方类库, 包含: 'jquery 2.2.x', 'angular 1.4.x', 'angular-animate 1.4.x', 'angular-cookies 1.4.x', 'angular-resource 1.4.x', 'angular-route 1.4.x'\n- pasp.min.js PASP UI JS文件",
+  "readmeFilename": "README.md",
+  "scripts": {},
+  "version": "1.2.24"
+}

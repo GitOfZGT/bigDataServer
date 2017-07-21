@@ -1,0 +1,122 @@
+$green:#3787DD;
+$green-deep:#3379C6;
+$white:white;
+$black:black;
+$ddd:#ddd;
+$ccc:#ccc;
+$color333:#333;
+$color666:#666;
+$yellow-light:#FFD67E;
+$yellow:#FC952C;
+$f3:#f3f3f3;
+$f2:#f2f2f2;
+$f1:#f1f1f1;
+$fa:#fafafa;
+$bordercolor:#E6E9EA;
+
+$top-h:60px;
+%top-bgcolor {
+    background-color: $green;
+}
+
+body {
+    font-family: Helvetica Neue, Luxi Sans, DejaVu Sans, Tahoma, Hiragino Sans GB, STHeiti, Microsoft YaHei;
+    color: #666;
+}
+
+.popover {
+    font-family: Helvetica Neue, Luxi Sans, DejaVu Sans, Tahoma, Hiragino Sans GB, STHeiti, Microsoft YaHei;
+}
+
+.form-group .has-icon {
+    line-height: 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.modal-header,
+.modal-footer {
+    padding: 10px 15px;
+}
+.text-warning {
+    color: $yellow;
+}
+.text-default{
+    color:lighten($color666,15%);
+}
+
+.cursor-pointer:hover {
+    cursor: pointer;
+}
+
+.font-size-13 {
+    font-size: 13px;
+}
+.font-size-12 {
+    font-size: 12px;
+}
+
+i,
+span {
+    vertical-align: middle;
+}
+
+.modal-header {
+    background-color: $green-deep;
+    color: $white;
+}
+
+.modal-close {
+    color: $white;
+}
+
+.modal-dialog .modal-close:hover {
+    color: $f1;
+}
+
+.alert-dialog .modal-dialog .alert-icon-confirm {
+    color: $white;
+}
+
+.panel.panel-border-shadow {
+    // box-shadow: 1px 1px 5px #ccc;
+    box-shadow: none;
+    &:hover {
+        // box-shadow: 1px 1px 5px #ccc;
+        box-shadow: none;
+        border-color: $green;
+    }
+    &.border-left-strong {
+        border-left: 3px solid $green;
+    }
+    .panel-tool {
+        font-size: 14px;
+        color: $green;
+        i {
+            opacity: 0.8;
+        }
+        i:hover {
+            color: $green-deep;
+            opacity: 1;
+        }
+    }
+}
+
+.flex-box {
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
+.flex-3 {
+    flex: 3;
+}

@@ -1,0 +1,26 @@
+.horizontal-nav{
+    list-style: none;
+
+    li{
+        float: left;
+    }
+    li>a{
+        padding:0 15px;
+        color:$white;
+        display: block;
+        height: $top-h;
+        &:hover,&:focus{
+            background: $hover-bg;
+            text-decoration: none;
+        }
+        &.active{
+            background: $hover-bg;
+            border-bottom:2px solid $yellow;
+            
+        }
+    }
+}
+.horizontal-nav::before,.horizontal-nav::after{
+    content: '';
+    clear: both;
+}

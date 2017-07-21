@@ -1,0 +1,21 @@
+.z-point{
+    position: relative;
+    &.point-outer,.point-inner{
+        display: block;
+        border-width: 0 10px 10px;
+        width:0;
+        height: 0;
+        border-style: solid;
+        font-size: 0;
+        line-height: 0;
+    }
+    &.point-outer{
+         border-color: transparent transparent  #ddd;
+    }
+    .point-inner{
+        position: absolute;
+        left: -9px;
+        top:2px;
+        border-color: transparent transparent #fff;
+    }
+}

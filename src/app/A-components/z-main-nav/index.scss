@@ -1,0 +1,32 @@
+.main-nav {
+    font-size: 14px;
+    li {
+        
+        a {
+            display: block;
+            padding: 10px 20px;
+            color: #666;
+            text-decoration: none;
+            &:hover{
+                background-color:#f1f1f1;
+            }
+          &.active{
+              color:#3379C6;
+              background-color:#f1f1f1;
+          }
+        }
+        i {
+            width:30px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+        .angle-right{
+            margin-top:4px;
+        }
+
+        .liner{
+            height: 1px;
+            background: #eee;
+        }
+    }
+}

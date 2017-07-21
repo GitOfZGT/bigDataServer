@@ -1,0 +1,37 @@
+.z-flip-over{
+    position: relative;
+    overflow: hidden;
+    .z-flip-wrap{
+        position: relative;
+        top:0;left:0;
+        z-index: 4;
+        margin: 0;
+        width:500%;
+    }
+    .z-flip-left,.z-flip-right{
+        position: absolute;
+        top:0;
+        left:0;
+        background: #ddd;
+        height: 100%;
+        color: #fff;
+        font-size: 18px;
+       i{
+           position: absolute;
+           top:50%;
+           left:0;
+           text-align: center;
+           height: 40px;
+           line-height: 40px;
+           margin-top:-20px;
+       }
+    }
+    .z-flip-right{
+        left: auto;
+        right:0;
+    }
+    .z-flip-left:hover,.z-flip-right:hover{
+        cursor:pointer;
+    background: #ccc;
+    }
+}

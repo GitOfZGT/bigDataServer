@@ -1,0 +1,10 @@
+<div class="z-select" ng-class="type?type:''">
+    <div class="form-control" ng-mousedown="opendown($event)" ng-mouseup="openSelect($event)">
+        <div class="input-cover"></div>
+        <input type="text" readonly ng-model="selectName" ng-focus="focus($event)" ng-blur="blur($event)" placeholder="{{placeholder}}">
+    <div class="z-select-btn" ></div>
+    </div>
+    <ul class="z-select-list">
+        <li ng-mousedown="selctdown($event)" ng-mouseup="selected(item,$event)" ng-repeat="item in selectListData" ng-class="{'active':item.name==selectName&&selectValue==item.value}">{{item.name}}</li>
+    </ul>
+</div>

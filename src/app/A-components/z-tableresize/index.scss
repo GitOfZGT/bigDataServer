@@ -1,0 +1,17 @@
+table[z-table-resize]{
+    .border-right{
+        border-right:1px dashed #bbb;
+    }
+    thead>tr>th,tbody>tr>td{
+        padding-right:0;
+    }
+    .table-th-line{
+    float: right;
+    width:3px ;
+    background: #ddd;
+    height: 1.3em;
+    cursor:col-resize;
+    border-left:1px solid white;
+    border-right:1px solid white;
+}
+}

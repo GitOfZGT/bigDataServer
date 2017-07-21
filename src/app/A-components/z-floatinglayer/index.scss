@@ -1,0 +1,12 @@
+.z-float-layer {
+    position: absolute;
+    z-index: 9;
+    .z-float-layer-body {
+        position: absolute;
+        top: 0;
+        left: 0;
+        border: 1px solid #ddd;
+        box-shadow: 2px 2px 5px #f1f1f1;
+        background: white;
+    }
+}

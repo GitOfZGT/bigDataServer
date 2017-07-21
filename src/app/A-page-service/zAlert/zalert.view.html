@@ -1,0 +1,11 @@
+<div class="modal-header">
+    <div class="modal-title">
+        确认{{vm.action}}
+        <span class="text-danger">{{vm.title}}</span>
+        ?
+    </div>
+</div>
+<div class="modal-body">
+    <button type="buton" class="btn btn-default btn-sm" ng-click="vm.cancel()">取消</button>
+    <button type="buton" class="btn btn-danger btn-sm" ng-click="vm.ok()">{{vm.action}}</button>
+</div>

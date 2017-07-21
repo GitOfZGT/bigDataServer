@@ -1,0 +1,16 @@
+<header class="page-header clearfix">
+    <h4 class="pull-left">
+        <i class="fa fa-arrow-left text-primary cursor-pointer" ng-hide="headerInfo.hideBack" ng-click="headerInfo.onBack()"></i>
+        <span>{{headerInfo.title}}</span>
+        <button class="btn page-header-btn" ng-repeat="bt in headerInfo.btnGroup" ng-click="bt.onClick()">
+            <i class="fa" ng-class="bt.icon"></i>
+            <span>{{bt.name}}</span>
+        </button>
+    </h4>
+    <ol class="breadcrumb">
+        <li ng-repeat="li in headerInfo.crumbs">
+            <a ui-sref="{{li.router}}" ng-if="li.router">{{li.name}}</a>
+            <span ng-if="!li.router">{{li.name}}</span>
+        </li>
+    </ol>
+</header>

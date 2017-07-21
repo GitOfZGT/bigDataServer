@@ -1,0 +1,33 @@
+.user-clear{
+    clear: both;
+}
+.user-name{
+    font-size: 14px;}
+.user-infos {
+    font-size: 13px;
+    dl {
+        margin-bottom:15px;
+        dd {
+            width: 108px;
+            white-space: nowrap;
+            word-break: normal;
+            
+        }
+        dt{
+             word-break:break-all;
+        }
+       
+    }
+    .text-dict{
+        height:100px;text-indent:2em;line-height:2;
+    }
+}
+.user-state{
+    i{
+        font-size: 18px;
+    }
+}
+.permission-name{
+    display: inline-block;
+    width:120px;
+}

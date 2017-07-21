@@ -1,0 +1,152 @@
+ $w:30px;
+ $green:#3787DD;
+ $green-deep:#3379C6;
+ %colors {
+     background: $green;
+     color: #fff;
+ }
+ 
+ $bw:4px;
+ $bh:6px;
+ .z-select.type-1 {
+     .form-control {
+         border: 0;
+         box-shadow: none;
+         background-color:  $green-deep;
+         border-radius: 30px;
+     }
+     input {
+         color: #fff;
+     }
+     .z-select-btn {
+         border: 0;
+         background: transparent;
+     }
+     .z-select-btn::before{
+         border-top: $bh solid #fff;
+     }
+     .z-select-list{
+         margin-top:10px;
+         padding:10px 0;
+         background: $green-deep;
+         li{
+             color: #fff;
+         }
+         li:hover{
+             background: $green;
+         }
+         li.active{
+             background: $green-deep;
+         }
+     }
+    
+     .z-select-list::before{
+         content: '';
+         width: 0;
+         height: 0;
+         position: absolute;
+         top:-8px;
+         right:15px;
+         border-left: 6px solid transparent;
+         border-right: 6px solid transparent;
+         border-bottom: 8px solid $green-deep;;
+     }
+     &.focus .form-control {
+         border: 0;
+     }
+     &.focus {
+         .z-select-btn::before {
+             border-top: $bh solid #fff;
+         }
+     }
+ }
+ 
+ .z-select {
+     position: relative;
+     font-size: 13px;
+     display: inline-block;
+     .form-control {
+         font-size: 1em;
+         position: relative;
+         z-index: 1;
+         box-shadow: inset 2px 2px 3px #f1f1f1;
+     }
+     input {
+         font-size: 1em;
+         width: 100%;
+         display: block;
+         border: 0;
+         margin-right: $w;
+         user-select: none;
+         background: none;
+     }
+     input[disabled] {
+         background: none;
+     }
+     .input-cover {
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+         z-index: 2;
+     }
+     .z-select-btn {
+         width: $w;
+         position: absolute;
+         top: 0;
+         right: 0;
+         height: 100%;
+         border-left: 1px solid #ddd;
+         background: #f1f1f1;
+         cursor: pointer;
+         z-index: 3;
+     }
+     .z-select-btn::before {
+         content: '';
+         width: 0;
+         height: 0;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         margin-left: -$bw;
+         margin-top: -$bh/2;
+         border-left: $bw solid transparent;
+         border-right: $bw solid transparent;
+         border-top: $bh solid #666;
+     }
+     .z-select-list {
+         display: none;
+         position: absolute;
+         z-index: 78;
+         left: 0;
+         width: 100%;
+         border: 1px solid $green;
+         margin-top: -2px;
+         margin-bottom: -2px;
+         background: #fff;
+         li {
+             font-size: 1em;
+             line-height: 30px;
+             padding: 0 10px;
+             &:hover {
+                 cursor: pointer;
+                 @extend %colors;
+             }
+             &.active {
+                 @extend %colors;
+             }
+         }
+     }
+     &.focus .form-control {
+         border: 1px solid $green;
+     }
+     &.focus .z-select-list {
+         display: block;
+     }
+     &.focus {
+         .z-select-btn::before {
+             border-top: $bh solid $green;
+         }
+     }
+ }

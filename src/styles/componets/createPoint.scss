@@ -1,0 +1,52 @@
+.service-create-nav {
+    ul {
+        display: table;
+        width: 100%;
+        padding: 0 5%;
+        margin: 40px 0 20px 0;
+        li {
+            display: table-cell;
+            text-align: center;
+            position: relative;
+            > div {
+                width: 10px;
+                height: 10px;
+                margin: 0 auto;
+                background-color: #efefef;
+                border-radius: 100%;
+                line-height: 10px;
+                position: relative;
+                z-index: 1;
+            }
+            > span {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: -20px;
+                color: #ccc;
+            }
+
+            &:after {
+                content: '';
+                position: absolute;
+                width: 100%;
+                background-color: #efefef;
+                height: 3px;
+                left: 0;
+                top: 3px;
+            }
+
+            &.done {
+                > div {
+                    background-color: #5adcf1;
+                }
+                > span {
+                    color: #666;
+                }
+                &:after {
+                    background-color: #5adcf1;
+                }
+            }
+        }
+    }
+}

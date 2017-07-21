@@ -1,0 +1,64 @@
+<section login-bg class="login-box">
+    <img ng-src="{{vm.bg.login}}" class="login-bg" alt="">
+    <div class="login-title">
+        <header class="logo">
+        <span class="fa-stack fa-lg">
+        <i class="fa fa-heart fa-stack-2x" style="font-size:3em;"></i>
+        <i class="fa fa-database fa-stack-1x" style="color:#3787DD;"></i>
+        </span>
+        <span>大数据应用服务框架</span>
+
+    </header>
+    </div>
+    <div class="login-body slide-left">
+    <!-- <div class="login-body slide-left" ng-if="!vm.isRegister"> -->
+        <div class="bg"></div>
+        <form class="content" ng-submit="loginForm.$valid&&vm.login()" ng-class="{'loginerror':vm.loginerror}" name="loginForm">
+            <div class="content-name">登录</div>
+           
+            <div class="form-group">
+                     <p class="text-danger show-error" ng-show="vm.loginerror">用户名或密码不正确。</p>
+                    <input ng-focus="vm.focus()" type="text" name="username" ng-model="vm.logindata.username" class="form-control" id="" placeholder="用户名" required>
+            </div>
+            <div class="form-group">
+                    <input ng-focus="vm.focus()" type="password"  name="password" ng-model="vm.logindata.password"  class="form-control" id="" placeholder="密码" required>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">登录</button>
+              <!-- <button type="button" class="btn btn-default pull-right" ng-click="vm.toRegister()">注册</button> -->
+
+            </div>
+        </form>
+    </div>
+    <!-- <div class="login-body slide-right" ng-if="vm.isRegister">
+        <div class="bg"></div>
+        <form class="content" ng-submit="vm.register(registerForm)" name="registerForm">
+            <div class="content-name">注册</div>
+            <div class="form-group">
+                    <input name="username" type="text" ng-model="vm.registerdata.username" class="form-control" id="" placeholder="登录用户名" ng-pattern="'^[a-zA-Z][a-zA-Z0-9_]{2,15}$'" required>
+                    <p class="show-error" ng-show="registerForm['username'].$error.pattern">用户名只能包括字母、_和数字,长度在3-16字符且首字必须是字母。</p>
+            </div>
+            <div class="form-group">
+                    <input type="password" name="password1" ng-model="vm.registerdata.password1" class="form-control" id="" placeholder="密码"  required>
+            </div>
+            <div class="form-group">
+                    <input type="password" name="password2" ng-model="vm.registerdata.password2" class="form-control" id="" placeholder="确认密码" required>
+                     <p class="show-error" ng-show="!registerForm.password1.$error.required&&!registerForm.password2.$error.required&&vm.registerdata.password1!==vm.registerdata.password2">两次输入的密码不一致。</p>
+            </div>
+            <div class="form-group">
+                    <input type="email" name="email" class="form-control" ng-model="vm.registerdata.email" id="" placeholder="邮箱" ng-pattern="'^[A-Za-z0-9\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$'">
+                    <p class="show-error" ng-show="registerForm.email.$error.pattern">邮箱输入有误。</p>
+            </div>
+            <div class="form-group">
+                    <input type="text" name="mobile" ng-model="vm.registerdata.mobile" class="form-control" id="" placeholder="手机号" ng-pattern="'^1[0-9]{10}$'">
+                    <p class="show-error" ng-show="registerForm.mobile.$error.pattern">手机号输入有误。</p>
+            </div>
+           
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">注册</button>
+              <button type="button" class="btn btn-default pull-right" ng-click="vm.backLogin()">返回登录</button>
+
+            </div>
+        </form>
+    </div> -->
+</section>

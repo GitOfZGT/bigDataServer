@@ -1,0 +1,10 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{vm.modalOpt.title}}</h4>
+</div>
+<div class="modal-body" ng-include="vm.modalOpt.contentUrl">
+
+</div>
+<div class="modal-footer" ng-hide="vm.modalOpt.hideBtn">
+    <button class="btn btn-primary" type="button" ng-click="vm.modalOpt.ok()">确定</button>
+    <button class="btn btn-warning" type="button" ng-click="vm.modalOpt.cancel()">取消</button>
+</div>

@@ -1,0 +1,11 @@
+<div class="user-control" ng-class="{'active':isopen}">
+    <div class="user-title">
+        <i class="fa fa-superpowers" aria-hidden="true"></i>
+        <span class="margin-right-10">{{power}}</span>
+        <img ng-src="{{src}}" alt="">
+        <span class="margin-left-5 margin-right-5">{{username}}</span>
+        <i class="fa" ng-class="{'fa-caret-down':!isopen,'fa-caret-up':isopen}"></i></div>
+    <ul class="menu-list" ng-include="urls">
+
+    </ul>
+</div>

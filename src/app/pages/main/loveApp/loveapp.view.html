@@ -1,0 +1,83 @@
+<z-page-header header-info="vm.headInfo"></z-page-header>
+<header class="base-clone-content margin-bottom-20 margin-top-10">
+    <div class="margin-bottom-20 clearfix">
+        <form class="form-inline pull-right" ng-submit="vm.search()">
+            <div class="form-group">
+                <input type="text" ng-model="vm.searchWord" class="form-control" placeholder="请输入关键字">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+            </div>
+        </form>
+    </div>
+    <div class="panel panel-border" ng-show="vm.filtrate.keyword">
+        <div class="panel-heading">
+            筛选
+        </div>
+        <div class="panel-body">
+            <div class="type-choose">
+                <dl class="clearfix">
+                    <dt>关键词</dt>
+                    <dd><a class="active">{{vm.filtrate.keyword}}<i class="fa fa-times margin-left-10 cursor-pointer" ng-click="vm.keywordClose()"></i></a></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="panel panel-border">
+    <div class="panel-heading">
+        应用服务列表
+    </div>
+    <div class="panel-body">
+        <section class="row" z-interleave>
+            <div class="col-md-6 col-lg-4 user" z-interleave-class="user-clear" ng-repeat="item in vm.usersList">
+                <div class="panel panel-border panel-border-shadow border-left-strong">
+                    <z-more-panel open-panel="item.openMoreData"></z-more-panel>
+                    <div class="panel-heading clearfix">
+                        <strong class="pull-left user-name">{{item.appname}}</strong>
+                        <div class="panel-tool pull-right">
+                             <!-- <i ng-click="vm.pushLove(item)" class="fa cursor-pointer margin-right-10" ng-class="item.hasLove?'fa-heart':'fa-heart-o'" ui-tooltip="{{item.hasLove?'取消收藏':'收藏'}}"></i> -->
+                            <!-- <i class="fa fa-pencil cursor-pointer margin-right-10" ui-tooltip="修改" ng-click="vm.editUser(item.id)"></i>   -->
+                             <i class="fa fa-trash-o cursor-pointer" ng-click="vm.deleteLove(item)" ui-tooltip="移除"></i>  
+                        </div>
+                    </div>
+                    <div class="panel-body user-infos">
+                        <dl class="flex-box">
+                            <dt class="padding-right-10">所属地区 : </dt>
+                            <dd class="flex-1">{{item.region}}</dd>
+                            <dt class="padding-right-10">所属部门 : </dt>
+                            <dd class="flex-1">{{item.branch}}</dd>
+                        </dl>
+                        <dl class="flex-box">
+                            <dt class="padding-right-10">上线时间 : </dt>
+                            <dd class="flex-1">{{item.createTime}}</dd>
+                        </dl>
+                        <dl class="flex-box">
+                            <dt class="padding-right-10">主要用途 : </dt>
+                            <dd class="flex-1">{{item.use}}</dd>
+                        </dl>
+                        <p><strong>应用简介 : </strong></p>
+                        <p class="text-default text-dict">
+                            {{item.dict}}
+                        </p>
+                        <p class="text-right">
+                            <button class="btn btn-primary btn-sm" ng-if="item.enabled">进入应用</button>
+                             <button class="btn btn-success btn-sm" ng-if="!item.enabled">申请使用</button> 
+                        </p>
+
+
+                        <!-- <div class="user-state">
+                    <strong ng-class="item.is_active?'text-info':'text-default'">活跃<i class="fa margin-left-5" ng-class="item.is_active?'fa-check-circle':'fa-times-circle'"></i></strong>
+                    <strong class="margin-left-15" ng-class="item.has_udc?'text-success':'text-default'">初始化<i class="fa margin-left-5" ng-class="item.has_udc?'fa-check-circle':'fa-times-circle'"></i></strong>
+                </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="text-center margin-top-10 margin-bottom-10" ng-show="!vm.usersList">
+                <ui-loading type="spin" size="sm"></ui-loading>
+            </div>
+            <p class="text-center text-danger" ng-show="vm.usersList.length==0">无相关应用服务</p>
+        </section>
+        <ui-pagination-group ng-model="vm.page.page" items-per-page="vm.page.page_size" total-items="vm.page.total" ng-change="vm.changePage()" on-refresh="vm.changePage()"></ui-pagination-group>
+    </div>
+</div>

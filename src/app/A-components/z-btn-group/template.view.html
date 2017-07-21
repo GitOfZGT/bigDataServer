@@ -1,0 +1,4 @@
+<span class="btn-group">
+    <button type="button" class="btn" ng-click="workcallback(item)" ng-repeat="item in listData"
+        ng-class="item.active?('btn-'+(type?type:'primary')+' active '+btnClass):('btn-'+(type?type:'primary')+'-hoverborder '+btnClass)">{{item.name}}</button>
+</span>

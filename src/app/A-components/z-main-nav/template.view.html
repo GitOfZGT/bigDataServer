@@ -1,0 +1,9 @@
+
+    <ul class="main-nav">
+        <li ng-repeat="nav in navData" ng-class="{'margin-bottom-10':!nav.liner,'padding-left-20 padding-right-20':nav.liner}">
+            <div class="liner margin-bottom-20 margin-top-20" ng-if="nav.liner"></div>
+            <a ng-if="!nav.liner" href="{{nav.link}}"><i class="fa" ng-class="nav.icon"></i><span>{{nav.name}}</span>
+            <span class="fa fa-angle-right pull-right angle-right" ></span>
+            </a>
+        </li>
+    </ul>

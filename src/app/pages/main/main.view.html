@@ -1,0 +1,32 @@
+<aside class="side-bar">
+    <header class="bar-top logo">
+
+        <span class="fa-stack fa-lg">
+        <i class="fa fa-heart fa-stack-2x" style="font-size:3em;"></i>
+        <i class="fa fa-database fa-stack-1x" style="color:#fff;"></i>
+        </span>
+        <span class="logo">大数据应用服务框架</span>
+
+    </header>
+    <section class="bar-body">
+        <!--<ui-navigation expanded="all" links="vm.linkdata" type="navigation-verticle-1"></ui-navigation>-->
+        <z-main-nav class="margin-top-20" nav-data="vm.linkdata"></z-main-nav>
+    </section>
+</aside>
+<div class="mains">
+    <header class="main-top">
+         <!-- <div class="pull-left margin-left-20">
+            <a  class="head-links" z-backpath ui-sref="control-head.control-frame.control-hostall({witchpage:1})" ui-tooltip="云主机控制台" ui-tooltip-placement="bottom"><i class="fa fa-cubes"></i></a>
+            <a  class="head-links" z-backpath ui-sref="control-head.control-frame.control-hostall({witchpage:2})" ui-tooltip="网络控制台" ui-tooltip-placement="bottom"><i class="fa fa-diamond"></i></a>
+           </div> -->
+     
+        <!--<div class="users">欢迎，<a tip-bottom="vm.navurl">Admin<i class="fa fa-caret-down" ></i></a></div>-->
+       
+        <div class="pull-right">
+            <user-menus template-url="{{vm.navurl}}"></user-menus>
+        </div>
+      
+    </header>
+    <section class="main-body" ui-view>
+    </section>
+</div>

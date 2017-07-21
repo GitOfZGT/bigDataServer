@@ -1,0 +1,113 @@
+<z-page-header header-info="vm.headInfo"></z-page-header>
+
+
+<div class="service-create-nav margin-bottom-30">
+    <ul>
+        <li class="done">
+            <span>应用信息</span>
+            <div></div>
+        </li>
+        <li ng-class="{'done': vm.step >= 2}">
+            <span>开发设置</span>
+            <div></div>
+        </li>
+        
+    </ul>
+</div>
+
+<form name="createForm" class="form-horizontal" ng-submit="createForm.$valid&&vm.create()">
+    <div class="form-group" ng-class="{'has-error':(createForm.username.$touched||createForm.$submitted)&&(createForm.username.$error.required)}">
+        <label for="" class="control-label col-md-3 col-lg-2">应用名称:<span class="text-danger">*</span></label>
+        <div class="col-md-5 col-lg-4">
+            <input ng-model="vm.user.username" name="username" type="text" class="form-control" required ng-disabled="vm.userId">
+            <!--<div class="text-danger font-size-12 margin-top-5">有效用户名</div>-->
+        </div>
+        <div class="control-label col-md-4 col-lg-6">
+            <span class="text-info pull-left">!</span>
+        </div>
+
+    </div>
+    <div class="form-group" ng-class="{'has-error':(createForm.account.$touched||createForm.$submitted)&&(createForm.account.$error.required)}">
+        <label for="" class="control-label col-md-3 col-lg-2">所属地区:<span class="text-danger">*</span></label>
+        <div class="col-md-5 col-lg-4">
+            <input ng-model="vm.user.ct_account_id" name="account" type="text" class="form-control" required ng-disabled="vm.userId">
+            <!--<div class="text-danger font-size-12 margin-top-5">有效用户名</div>-->
+        </div>
+        <div class="control-label col-md-4 col-lg-6">
+            <span class="text-info pull-left">!</span>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error':(createForm.ename.$touched||createForm.$submitted)&&(createForm.ename.$error.required)}">
+        <label for="" class="control-label col-md-3 col-lg-2">所属部门:<span class="text-danger">*</span></label>
+        <div class="col-md-5 col-lg-4">
+            <input ng-model="vm.user.ct_user_id" name="ename" type="text" class="form-control" required ng-disabled="vm.userId">
+            <!--<div class="text-danger font-size-12 margin-top-5">有效用户名</div>-->
+        </div>
+        <div class="control-label col-md-4 col-lg-6">
+            <span class="text-info pull-left">!</span>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error':(createForm.url.$touched||createForm.$submitted)&&(createForm.url.$error.required)}">
+        <label for="" class="control-label col-md-3 col-lg-2">URL:<span class="text-danger">*</span></label>
+        <div class="col-md-5 col-lg-4">
+            <input ng-model="vm.user.ct_user_id" name="url" type="text" class="form-control" required ng-disabled="vm.userId">
+            <!--<div class="text-danger font-size-12 margin-top-5">有效用户名</div>-->
+        </div>
+        <div class="control-label col-md-4 col-lg-6">
+            <span class="text-info pull-left">!</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="control-label col-md-3 col-lg-2">接入类型:<span class="text-danger">*</span></label>
+        <div class="col-md-5 col-lg-4" style="padding-top:7px;">
+            <ui-radio-group ng-model="vm.selected">
+                <ui-radio value="'Iframe'" class="margin-right-10">Iframe嵌入</ui-radio>
+                <ui-radio value="'Url'" class="margin-right-10">Url跳转</ui-radio>
+            </ui-radio-group>
+        </div>
+    </div>
+    <!-- <div class="form-group" ng-class="{'has-error':(createForm.email.$touched||createForm.$submitted)&&(createForm.email.$error.required)}">
+        <label for="" class="control-label col-md-3 col-lg-2">Email:<span class="text-danger">*</span></label>
+        <div class="col-md-5 col-lg-4">
+            <input ng-model="vm.user.email" name="email" type="email" class="form-control" required ng-disabled="vm.userId">
+            <div class="text-danger font-size-12 margin-top-5">有效用户名</div>
+        </div>
+        <div class="control-label col-md-4 col-lg-6">
+            <span class="text-info pull-left">!</span>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error':(createForm.mobile.$touched||createForm.$submitted)&&(createForm.mobile.$error.required)}">
+        <label for="" class="control-label col-md-3 col-lg-2">手机号:<span class="text-danger">*</span></label>
+        <div class="col-md-5 col-lg-4">
+            <input ng-model="vm.user.mobile" name="mobile" type="text" class="form-control" required>
+            <div class="text-danger font-size-12 margin-top-5">有效用户名</div>
+        </div>
+        <div class="control-label col-md-4 col-lg-6">
+            <span class="text-info pull-left">!</span>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error':(createForm.pwd.$touched||createForm.$submitted)&&(createForm.pwd.$error.required)}">
+        <label for="" class="control-label col-md-3 col-lg-2">密码:<span class="text-danger">*</span></label>
+        <div class="col-md-5 col-lg-4">
+            <input ng-model="vm.user.password" name="pwd" type="password" class="form-control" required>
+            <div class="text-danger font-size-12 margin-top-5">有效用户名</div>
+        </div>
+        <div class="control-label col-md-4 col-lg-6">
+            <span class="text-info pull-left">!</span>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{'has-error':(createForm.pwdagain.$touched||createForm.$submitted)&&(createForm.pwdagain.$error.required||vm.user.password!=vm.user.passwordagain)}">
+        <label for="" class="control-label col-md-3 col-lg-2">确认密码:<span class="text-danger">*</span></label>
+        <div class="col-md-5 col-lg-4">
+            <input ng-model="vm.user.passwordagain" name="pwdagain" type="password" class="form-control" required>
+            <div class="text-danger font-size-12 margin-top-5">有效用户名</div>
+        </div>
+        <div class="control-label col-md-4 col-lg-6">
+            <span class="text-info pull-left">!</span>
+        </div>
+    </div> -->
+
+    <div class="main-footer">
+        <div class="pull-right padding-right-15 padding-top-10"><button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-cog fa-spin fa-fw fa-lg" ng-show="vm.btnLoading"></i> <span>{{vm.btnName}}</span></button></div>
+    </div>
+</form>

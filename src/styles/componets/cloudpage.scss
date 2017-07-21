@@ -1,0 +1,31 @@
+.cloud-full{
+    padding-left:20px;
+}
+.cloud-rows{
+    
+    max-width: 800px;
+    p{
+        font-size:16px;
+        margin-top:20px;
+    }
+    .text-warning{
+        font-size:22px;
+    }
+}
+
+body.cloud-host{
+    background-color: #E8EFFA;
+     background-image: url(../app/images/20170313_yzj.png);
+    background-repeat: no-repeat;
+}
+
+body.cloud-private{
+    background-color: #EFF7F9;
+     background-image: url(../app/images/vpc-20170323.jpg);
+    background-repeat: no-repeat;
+}
+body.cloud-disk{
+    background-color: #F2FDFF;
+     background-image: url(../app/images/yyp-20170323.jpg);
+    background-repeat: no-repeat;
+}

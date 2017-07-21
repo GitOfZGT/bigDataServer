@@ -1,0 +1,87 @@
+.homes{
+    h1,h2,h3,h4{
+        margin: 0;
+    }
+}
+.home-info{
+    .hello{
+        font-size: 24px;
+        color:$color333;
+    }
+    a{
+        color: $color666;
+        &:hover{
+            text-decoration: none;
+            color:$yellow;
+        }
+        font-size: 13px;
+    }
+    i{
+        vertical-align:middle;
+        font-size: 26px;
+    }
+}
+
+.home-account {
+    border:1px solid $bordercolor;
+    padding:15px;
+    
+
+
+    .count{
+        border-left:1px solid $bordercolor;
+        margin:0;
+        width:200px;
+        height: 150px;
+        dt{
+            font-size: 80px;
+            font-family: Arial;
+            font-weight: 300;
+        }
+    }
+}
+%lihover{
+     color:$green;
+    border-bottom:3px solid $green;
+}
+.home-list{
+    $lih:50px;
+    border:1px solid $bordercolor;
+    ul{
+        padding:0;
+        margin: 0;
+        width:100%;
+        list-style: none;
+        
+        >li{
+            border-left:1px solid $bordercolor;
+             border-bottom:1px solid $bordercolor;
+            float: left;
+            width:50%;
+            line-height: $lih;
+            height: $lih;
+            font-size: 18px;
+            &:first-child{
+                border-left:0;
+            }
+            &:hover{
+               @extend %lihover;
+                 cursor:pointer;
+            }
+            &.active{
+                 @extend %lihover;
+            }
+        }
+    }
+    td{
+        font-size: 13px;
+    }
+    table{
+        margin:0;
+    }
+    table>thead td{
+        color: $color333;
+        font-weight: 600;
+    }
+}
+

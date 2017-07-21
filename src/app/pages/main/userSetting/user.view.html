@@ -1,0 +1,65 @@
+<z-page-header header-info="vm.headInfo"></z-page-header>
+<header class="base-clone-content margin-bottom-20 margin-top-10">
+    <div class="margin-bottom-20 clearfix">
+        <div class="pull-left">
+            <a ui-sref="pages.usercreate" class="btn btn-primary">创建用户</a>
+        </div>
+        <form class="form-inline pull-right" ng-submit="vm.search()">
+            <div class="form-group">
+                <input type="text" ng-model="vm.searchWord" class="form-control" placeholder="请输入名称搜索">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+            </div>
+        </form>
+    </div>
+    <div class="panel panel-border" ng-show="vm.filtrate.keyword">
+        <div class="panel-heading">
+            筛选
+        </div>
+        <div class="panel-body">
+            <div class="type-choose">
+                <dl class="clearfix">
+                    <dt>关键词</dt>
+                    <dd><a class="active">{{vm.filtrate.keyword}}<i class="fa fa-times margin-left-10 cursor-pointer" ng-click="vm.keywordClose()"></i></a></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="panel panel-border">
+    <div class="panel-heading">
+        用户列表
+    </div>
+    <div class="panel-body">
+      <table class="table">
+          <thead>
+          <tr>
+              <th style="width:15%;">用户名称</th>
+              <th style="width:10%;">角色</th>
+              <th style="width:10%;">地区</th>
+              <th style="width:10%;">部门</th>
+              <th style="width:20%;">Email</th>
+              <th style="width:15%;">手机号</th>
+              <th style="width:20%;">操作</th>
+          </tr>
+          </thead>
+        <tbody>
+            <tr ng-repeat="item in vm.usersList track by $index">
+                <td><span>{{item.userName}}</span></td>
+                <td><span>{{item.roleName}}</span></td>
+                <td><span>{{item.region}}</span></td>
+                <td><span>{{item.branch}}</span></td>
+                <td><span>{{item.email}}</span></td>
+                <td><span>{{item.mobile}}</span></td>
+                <td><a href="">修改</a><a href="" class="margin-left-15" ng-if="item.enbleRemove" ng-click="vm.removeRole(item.id)">删除</a></td>
+            </tr>
+           
+        </tbody>
+      </table>
+      <div class="text-center margin-top-10 margin-bottom-10" ng-show="!vm.usersList">
+                <ui-loading type="spin" size="sm"></ui-loading>
+            </div>
+        <ui-pagination-group ng-model="vm.page.page" items-per-page="vm.page.page_size" total-items="vm.page.total" ng-change="vm.changePage()" on-refresh="vm.changePage()"></ui-pagination-group>
+    </div>
+</div>

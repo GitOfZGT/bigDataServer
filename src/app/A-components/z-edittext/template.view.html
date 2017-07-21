@@ -1,0 +1,11 @@
+<div class="z-edit-text">
+    <span ng-show="!isEdit">
+      <span ng-bind="editModel"></span>
+        <i class="fa fa-pencil text-info" ng-click="edit()"></i>
+    </span>
+    <span ng-show="isEdit">
+        <input type="text" ng-model="editModeltext" class="form-control">
+        <i class="fa fa-check text-success" ng-click="save()"></i>
+        <i class="fa fa-close text-danger" ng-click="close()"></i>
+    </span>
+</div>

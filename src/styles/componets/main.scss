@@ -1,0 +1,282 @@
+$sidebar-width:250px;
+$acolor:$green;
+$bartop:100px;
+$hover-bg:$green-deep;
+$top-height:$top-h;
+%top-style {
+    line-height: $top-height;
+}
+
+%body-style {
+    z-index: 9;
+    overflow: auto;
+    position: absolute;
+    top: $bartop;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+
+%top-border-right {
+    border-right: 1px solid $acolor;
+}
+.global-loading-cover{
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 10000;
+    width:100%;height:100%;
+    .global-loading{
+      width:100px;
+      height:100px;
+      left:50%;
+      margin-left:-50px;
+      margin-top:-50px;
+      position: absolute;
+      top:50%;
+    }
+}
+.main-footer {
+    position: fixed;
+    
+    bottom: 0;
+    right: 0;
+    left: $sidebar-width;
+    background: $white;
+    box-shadow: 0px -1px 8px #ccc;
+    height: 50px;
+    z-index: 9;
+}
+.side-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    background-color: $white;
+    width: $sidebar-width;
+    .bar-top {
+        color: $green-deep;
+        text-align: center;
+        height: $bartop;
+        line-height: $bartop;
+        border-bottom: 1px solid #eee;
+        
+    }
+    .bar-body {
+        @extend %body-style;
+    }
+    border-right:1px solid $bordercolor;
+    box-shadow: 3px 0px 15px #ccc;
+}
+
+.main-top {
+    position: fixed;
+    z-index: 9;
+    height: $top-height;
+    @extend %top-bgcolor;
+    @extend %top-style;
+    left: $sidebar-width;
+    right: 0;
+    top: 0;
+    padding-right: 15px;
+    .nav>li>a {
+        line-height: $top-height;
+        padding: 0 20px;
+        color: $f2;
+        font-size: 18px;
+        @extend %top-border-right;
+        &:hover,
+        &.actived {
+            background-color: $hover-bg;
+            color: $white;
+        }
+        &:focus {
+            background-color: $hover-bg;
+        }
+    }
+    .users {
+        color: $white;
+        a {
+            color: $yellow-light;
+            cursor: pointer;
+            padding: 10px;
+        }
+        float:right;
+        line-height: $top-height;
+        margin-right:15px;
+        i {
+            margin-left: 10px;
+            font-size: 1.2em;
+        }
+    }
+    .tip-bottom {
+        position: absolute;
+        background: $white;
+        border: 1px solid $ddd;
+        visibility: hidden;
+        z-index: 1000;
+        border-radius: 4px;
+        padding: 5px 0;
+        box-shadow: 2px 2px 8px $ccc;
+        &.visible {
+            visibility: visible;
+        }
+        $bw:10px;
+        $bh:10px;
+        &::before {
+            content: '';
+            border-left: $bw solid transparent;
+            border-right: $bw solid transparent;
+            border-bottom: $bh solid $ddd;
+            position: absolute;
+            left: 50%;
+            margin-left: -$bw;
+            top: -$bh;
+        }
+        &::after {
+            content: '';
+            border-left: $bw solid transparent;
+            border-right: $bw solid transparent;
+            border-bottom: $bh solid $white;
+            position: absolute;
+            left: 50%;
+            margin-left: -$bw;
+            top: -($bh - 1);
+        }
+        .user-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            min-width: 120px;
+            a {
+                display: block;
+                padding: 5px 15px;
+                color: $color666;
+                line-height: 20px;
+                font-size: 13px;
+                &:hover {
+                    text-decoration: none;
+                    background: $f3;
+                    color: $acolor;
+                }
+            }
+        }
+    }
+}
+
+.main-body {
+    margin-left: $sidebar-width;
+    padding: 70px 20px 20px;
+}
+
+.logo {
+    font-size: 20px;
+    cursor: pointer;
+    .fa-stack {
+            margin-right: 6px;
+            font-size: 12px;
+            width: 3em;
+            height: 3em;
+            line-height: 3em;
+            .fa-stack-2x {
+                font-size: 3em;
+            }
+            .fa-stack-1x{
+                color: $white;
+            }
+            &.logo-color{
+                .fa-stack-2x {
+                color:$white;
+            }
+            .fa-stack-1x{
+                color: $green;
+            }
+            }
+        }
+}
+
+.child-title {
+    vertical-align: middle;
+    font-size: 20px;
+    color: $white;
+}
+
+.head-links {
+    color: $white;
+    display: inline-block;
+    padding: 0 15px;
+    vertical-align: top;
+    
+    $iw:30px;
+
+    i {
+        width:$iw;
+        height: $iw;
+        line-height: $iw;
+        text-align: center;
+        border: 1px solid #fff;
+        border-radius:100%;
+        font-size: 1.1em;
+    }
+    &:hover,
+    &:active,
+    &:visited,
+    &:focus {
+        text-decoration: none;
+        color: $white;
+        background: $green-deep;
+    }
+}
+
+.user-control {
+    transition-duration: 0.3s;
+    $wh: 30px;
+    img {
+        width: $wh;
+        height: $wh;
+    }
+    user-select: none;
+    position:relative;
+    color:#CBEDED;
+    padding:0 15px;
+    &:hover {
+        cursor: pointer;
+        background-color: $green-deep;
+    }
+    .user-title {
+        height: $top-height;
+    }
+    .menu-list {
+        position: absolute;
+        width: 100%;
+        right: 0;
+        opacity: 0;
+        visibility: hidden;
+        margin-top: -20px;
+        min-width: 180px;
+        padding: 15px 0;
+        background-color: $green-deep;
+        list-style: none;
+        li {
+            line-height: 36px;
+            padding: 0 15px;
+            i {
+                width: 24px;
+            }
+            &:hover {
+                background-color: $green;
+            }
+        }
+    }
+    &.active {
+        background-color: $green;
+        color: $white;
+        .menu-list {
+            transition-duration: 0.3s;
+            margin-top: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
