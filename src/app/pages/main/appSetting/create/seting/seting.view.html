@@ -1,0 +1,54 @@
+<section class="base-clone-content">
+    <div class="panel panel-border">
+        <div class="panel-body">
+            <span class="margin-right-15">开放设置：</span>
+            <ui-radio-group ng-model="vm.setting" on-change="vm.seted(value)">
+                <ui-radio value="'1'" class="margin-right-10">全部可见</ui-radio>
+                <ui-radio value="'2'" class="margin-right-10">选择可见</ui-radio>
+            </ui-radio-group>
+        </div>
+    </div>
+    <div ng-show="vm.selectting">
+        <div class="panel panel-border">
+        <div class="panel-heading">
+            请选择此应用开放可见的其他部门
+        </div>
+        <div class="panel-body">
+            <div class="type-choose">
+                <dl class="clearfix">
+                    <dt>选择地区</dt>
+                    <dd><a href="" ng-click="vm.selectRegion('region',a)" ng-class="{'active':a.active}" ng-repeat="a in vm.chosion.region">{{a.name}}</a></dd>
+                </dl>
+                <dl class="clearfix">
+                    <dt>选择部门</dt>
+                    <dd>
+                        <a ng-repeat="a in vm.chosion.branch">
+                            <ui-checkbox checked="a.checked" on-change="vm.selectBranch(checked, a)" class="margin-right-10">{{a.name}}</ui-checkbox>
+                        </a>
+                    </dd>
+                </dl>
+
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-border">
+        <div class="panel-body">
+            <div class="type-choose">
+                <dl class="clearfix flex-box">
+                    <dt>已选部门</dt>
+                    <dd class="flex-1"><a class="active" ng-repeat="a in vm.chosion.hasSelet">{{a.region+'-'+a.branch}}<i class="fa fa-times margin-left-10 cursor-pointer" ng-click="vm.removeBranch(a)"></i></a></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+</section>
+
+<div class="main-footer padding-right-15 padding-top-10">
+    <div class="pull-left margin-left-10">
+        <a class="btn btn-primary-hoverborder" ui-sref="pages.appcreate.base">上一步</a>
+    </div>
+    <div class="pull-right"><button type="submit" class="btn btn-primary btn-sm" ng-click="vm.create()"><span ng-show="vm.btnLoading"><i class="fa fa-cog fa-spin fa-fw fa-lg" ></i></span> <span>{{vm.btnName}}</span></button></div>
+</div>

@@ -69,8 +69,36 @@ $top-height:$top-h;
     border-right:1px solid $bordercolor;
     box-shadow: 3px 0px 15px #ccc;
 }
-
+.main-iframe{
+    overflow: hidden;
+    .main-top{
+        left: 0;
+        z-index: 99;
+    }
+}
+.main-iframe-win{
+    position: fixed;
+    top:$top-height;
+    left: 0;
+    right:0;
+    bottom: 0;
+    z-index: 99;
+    background: #fff;
+    iframe{
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+    .iframe-loading{
+        position: absolute;
+        top:50%;
+        left:50%;
+        z-index: 10;
+    }
+}
 .main-top {
+
+    color:#CBEDED;
     position: fixed;
     z-index: 9;
     height: $top-height;
@@ -79,7 +107,27 @@ $top-height:$top-h;
     left: $sidebar-width;
     right: 0;
     top: 0;
+    font-size: 13px;
     padding-right: 15px;
+ 
+    .msg{
+        position: relative;
+        font-size: 15px;
+        padding:0 10px;
+        margin-right:5px;
+        height: $top-height;
+        cursor: pointer;
+        &:hover{
+            background:  $green-deep;
+        }
+        .msg-Num{
+            position: absolute;
+            top:25px;
+            right:6px;
+            font-size: 12px;
+            line-height: 0;
+        }
+    }
     .nav>li>a {
         line-height: $top-height;
         padding: 0 20px;
@@ -280,3 +328,5 @@ $top-height:$top-h;
         }
     }
 }
+
+

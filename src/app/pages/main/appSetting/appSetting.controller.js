@@ -1,13 +1,13 @@
-
 class ctrl {
-    constructor(ApiUser, zAlert, $state, $timeout, $filter) {
+    constructor(zAlert, $state, $timeout, $filter) {
         'ngInject'
-        this._ApiUser = ApiUser;
+
         this._zAlert = zAlert;
         this._state = $state;
         this._timeout = $timeout;
         this._filter = $filter;
- this.User= JSON.parse(sessionStorage.getItem('thisUser'));
+        this.User = JSON.parse(sessionStorage.getItem('thisUser'));
+        this.super = this.User.permission.super;
         this.AppsList = JSON.parse(sessionStorage.getItem('appList'));
         this.searchWord = '';
         var region = JSON.parse(sessionStorage.getItem('region')),
@@ -50,32 +50,32 @@ class ctrl {
             use: '全部'
         }
     }
-     notMyBranch(){
-        if(this.filtrate.region==this.User.region&&this.filtrate.branch==this.User.branch){
-            this.isMyBranch=true;
-        }else{
-             this.isMyBranch=false;
+    notMyBranch() {
+        if (this.filtrate.region == this.User.region && this.filtrate.branch == this.User.branch) {
+            this.isMyBranch = true;
+        } else {
+            this.isMyBranch = false;
         }
     }
-    selectRB(key){
-         for (let i = 0; i < this.chosion[key].length; i++) {
-            if (this.chosion[key][i].name==this.filtrate[key]) {
+    selectRB(key) {
+        for (let i = 0; i < this.chosion[key].length; i++) {
+            if (this.chosion[key][i].name == this.filtrate[key]) {
                 this.chosion[key][i].active = true;
-               
-            }else{
+
+            } else {
                 this.chosion[key][i].active = false;
             }
         }
     }
-    myBranch(){
-        if(this.isMyBranch){
+    myBranch() {
+        if (this.isMyBranch) {
             return;
         }
-        this.isMyBranch=true;
-        this.filtrate.keyword='';
+        this.isMyBranch = true;
+        this.filtrate.keyword = '';
         this.searchWord = '';
-        this.filtrate.region=this.User.region;
-        this.filtrate.branch=this.User.branch;
+        this.filtrate.region = this.User.region;
+        this.filtrate.branch = this.User.branch;
         this.selectRB('region');
         this.selectRB('branch');
         this.filterApp();
@@ -116,7 +116,7 @@ class ctrl {
         this.notMyBranch();
         this.AppsList = staticList;
     }
-    
+
     selectRegion(key, item) {
         this.setSeartionActive(key, item);
         this.filtrate.region = item.name;

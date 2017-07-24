@@ -1,11 +1,12 @@
 class ctrl {
-    constructor(ApiUser, zAlert, $state, $timeout, $filter, zNotification) {
+    constructor(zAlert, $state, $timeout, $filter, zNotification,iframeWin) {
         'ngInject'
-        this._ApiUser = ApiUser;
+     
         this._zAlert = zAlert;
         this._state = $state;
         this._timeout = $timeout;
         this._filter = $filter;
+        this._iframeWin=iframeWin;
         this._zNotification = zNotification;
         this.AppsList = JSON.parse(sessionStorage.getItem('myAppList'));
         this.searchWord = '';
@@ -35,6 +36,9 @@ class ctrl {
         this.filtrate = {
             keyword: ''
         }
+    }
+    openApp(item){
+        this._iframeWin.open(item);
     }
     pushLove(item) {
         let act = '收藏';

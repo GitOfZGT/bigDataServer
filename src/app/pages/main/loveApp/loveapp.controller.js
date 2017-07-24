@@ -1,7 +1,7 @@
 class ctrl {
-    constructor(ApiUser, zAlert, $state, $timeout, $filter, zNotification) {
+    constructor(zAlert, $state, $timeout, $filter, zNotification) {
         'ngInject'
-        this._ApiUser = ApiUser;
+  
         this._zAlert = zAlert;
         this._state = $state;
         this._timeout = $timeout;

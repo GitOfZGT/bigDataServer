@@ -1,14 +1,15 @@
 
 class ctrl {
-    constructor(ApiUser, zAlert, $state, $timeout, $filter, zNotification) {
+    constructor( zAlert, $state, $timeout, $filter, zNotification) {
         'ngInject'
-        this._ApiUser = ApiUser;
+     
         this._zAlert = zAlert;
         this._state = $state;
         this._timeout = $timeout;
         this._filter = $filter;
         this._zNotification = zNotification;
         this.User= JSON.parse(sessionStorage.getItem('thisUser'));
+        this.super =this.User.permission.super;
         this.AppsList = JSON.parse(sessionStorage.getItem('appList'));
         this.searchWord = '';
         var region = JSON.parse(sessionStorage.getItem('region')),

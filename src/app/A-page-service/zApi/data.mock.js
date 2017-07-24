@@ -8,31 +8,33 @@ sessionStorage.setItem('branch', JSON.stringify(branch));
 sessionStorage.setItem('use', JSON.stringify(use));
 //总数据：
 let data = Mock.mock({
-    "list|100": [{
-        "id|+1": 1,
-        "createTime": function() {
-            return Mock.Random.date('yyyy-MM-dd');
-        },
-        "use": function() {
-            return use[Math.round(Math.random() * (use.length - 1))].name;
-        },
-        "region": function() {
-            return region[Math.round(Math.random() * (region.length - 1))].name;
-        },
-        "branch": function() {
-            return branch[Math.round(Math.random() * (branch.length - 1))].name;
-        },
-        "appname": function() {
-            // return Mock.Random.csentence(2, 8)+this.id;
-            return "应用名称-" + this.id;
-        },
-        "dict": function() {
-            return Mock.Random.cparagraph(2, 4)
-        },
-        "hasLove": false,
-        "enabled": false
-    }]
-})
+        "list|100": [{
+            "id|+1": 1,
+            "createTime": function() {
+                return Mock.Random.date('yyyy-MM-dd');
+            },
+            "use": function() {
+                return use[Math.round(Math.random() * (use.length - 1))].name;
+            },
+            "region": function() {
+                return region[Math.round(Math.random() * (region.length - 1))].name;
+            },
+            "branch": function() {
+                return branch[Math.round(Math.random() * (branch.length - 1))].name;
+            },
+            "appname": function() {
+                // return Mock.Random.csentence(2, 8)+this.id;
+                return "应用名称-" + this.id;
+            },
+            "dict": function() {
+                return Mock.Random.cparagraph(2, 4)
+            },
+            "url":"http://www.baidu.com",
+            "hasLove": false,
+            "enabled": false
+        }]
+    })
+    // 时间排序
 data.list.sort(function(p, n) {
     var d1 = p.createTime.split('-');
     var d2 = n.createTime.split('-');
@@ -86,8 +88,10 @@ let roleData = [{
             "roleManage": true,
             "admin": true
         },
+        "region": "通用",
+        "branch": "通用",
         "enbleRemove": false,
-        "enbleRole": true
+        "hideRole": true
     },
     {
         "id": 3,
@@ -97,6 +101,8 @@ let roleData = [{
             "userManage": false,
             "roleManage": false
         },
+        "region": "通用",
+        "branch": "通用",
         "enbleRemove": false
     }
 ]
@@ -107,8 +113,7 @@ let allrole = [{
         "appManage": true,
         "userManage": true,
         "roleManage": true,
-        "super": true,
-        "admin": true
+        "super": true
     },
     "enbleRemove": false,
     "enbleRole": true

@@ -1,17 +1,24 @@
 class ctrl {
-    constructor(ApiUser, zAlert, $state, $timeout, $filter, zNotification) {
+    constructor(zAlert, $state, $timeout, $filter, zNotification) {
         'ngInject'
-        this._ApiUser = ApiUser;
+
         this._zAlert = zAlert;
         this._state = $state;
         this._timeout = $timeout;
         this._filter = $filter;
         this._zNotification = zNotification;
-        this.AppsList = JSON.parse(sessionStorage.getItem('userData'));
-        this.thisUser= JSON.parse(sessionStorage.getItem('thisUser'));
-        this.super=this.thisUser.permission.super;
+        // this.AppsList = JSON.parse(sessionStorage.getItem('userData'));
+        this.thisUser = JSON.parse(sessionStorage.getItem('thisUser'));
+        this.super = this.thisUser.permission.super;
         this.searchWord = '';
-
+        var region = JSON.parse(sessionStorage.getItem('region')),
+            branch = JSON.parse(sessionStorage.getItem('branch'));
+        region.unshift({ name: '全部', active: true });
+        branch.unshift({ name: '全部', active: true });
+           this.chosion = {
+            region: region,
+            branch: branch
+        }
         this.headInfo = {
             title: '用户管理',
             btnGroup: [],
@@ -34,7 +41,9 @@ class ctrl {
 
         //筛选项：
         this.filtrate = {
-            keyword: ''
+            keyword: '',
+            region: '全部',
+            branch: '全部',
         }
         this.filterApp();
         this.getList();
@@ -42,7 +51,7 @@ class ctrl {
     }
     getuserData() {
         let staticList = JSON.parse(sessionStorage.getItem('userData'));
-      
+
         if (this.super) { //超级管理员
             for (let i = 0; i < staticList.length; i++) {
                 if (this.thisUser.id == staticList[i].id) {
@@ -60,7 +69,7 @@ class ctrl {
 
         return staticList;
     }
-    removeRole(id) {
+    removeuser(id) {
         var staticList = JSON.parse(sessionStorage.getItem('userData'));
         for (let i = 0; i < staticList.length; i++) {
             if (id == staticList[i].id) {
@@ -80,7 +89,49 @@ class ctrl {
         if (this.filtrate.keyword != '') {
             staticList = this._filter('filter')(staticList, this.filtrate.keyword);
         }
+        //超级管理员的权限：
+        if (this.super) {
+            //过滤地区
+            if (this.filtrate.region != "全部") {
+                staticList = staticList.filter((el) => {
+                    if (el.region == this.filtrate.region) {
+                        return true;
+                    }
+                });
+            }
+            //过滤部门
+            if (this.filtrate.branch != "全部") {
+                staticList = staticList.filter((el) => {
+                    if (el.branch == this.filtrate.branch) {
+                        return true;
+                    }
+                });
+            }
+        }
         this.AppsList = staticList;
+    }
+    selectRegion(key, item) {
+        this.setSeartionActive(key, item);
+        this.filtrate.region = item.name;
+
+        this.filterApp();
+        this.getList();
+    }
+    selectBranch(key, item) {
+        this.setSeartionActive(key, item);
+        this.filtrate.branch = item.name;
+
+        this.filterApp();
+        this.getList();
+    }
+    setSeartionActive(key, item) {
+        for (let i = 0; i < this.chosion[key].length; i++) {
+            if (this.chosion[key][i].active) {
+                this.chosion[key][i].active = false;
+                break;
+            }
+        }
+        item.active = true;
     }
     keywordClose() {
         this.searchWord = '';

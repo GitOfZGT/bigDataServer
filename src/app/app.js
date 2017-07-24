@@ -3,7 +3,7 @@ import 'pasp_js';
 import 'pasp_css';
 import '../styles/index.scss';
 import 'velocity';
-import imgs from  './images/contact_man.png';
+import imgs from './images/contact_man.png';
 
 /**
  * 自动页面加载
@@ -19,45 +19,45 @@ pageModules.keys().forEach((key) => {
 /**
  * 创建应用
  */
-let app = angular.module('main', dependencies).run(($rootScope,$location,$state,$timeout)=>{
-    if(!localStorage.getItem('hasLogin')){
+let app = angular.module('main', dependencies).run(($rootScope, $location, $state, $timeout) => {
+    if (!localStorage.getItem('hasLogin')) {
         $state.go('login');
     }
-$rootScope.headPortrait={imgs};//头像
-
-$rootScope.prveClass='';
-$rootScope.$watch(function(){
-    return $location.path();
-},function(newV){
-    document.body.scrollTop = 0;
-    angular.element(document.body).removeClass($rootScope.prveClass).addClass($rootScope.prveClass=newV.split('/').pop());
-});
-
-
-// $rootScope.$on('$stateChangeStart', function(event, transition) {
-// //   event.preventDefault();
-// //   console.log(1)
-
-//   $rootScope.showLoading=true;
-
-// })
-// $rootScope.$on('$stateChangeSuccess', function(event, transition) {
-// //   event.preventDefault();
-// //   console.log(2)
-//    $timeout(function(){
-//   $rootScope.showLoading=false;
-
-//   },1000)
-// })
-}).constant('uibPaginationConfig', {
-        firstText: '第一页',
-        previousText: '上一页',
-        nextText: '下一页',
-        lastText: '最后一页',
-        boundaryLinks: false,
-        directionLinks: true,
-        itemsPerPageSelect:false
+    $rootScope.headPortrait = { imgs }; //头像
+    $rootScope.ifameSrc = '';
+    $rootScope.prveClass = '';
+    $rootScope.$watch(function() {
+        return $location.path();
+    }, function(newV) {
+        document.body.scrollTop = 0;
+        angular.element(document.body).removeClass($rootScope.prveClass).addClass($rootScope.prveClass = newV.split('/').pop());
     });
+
+
+    // $rootScope.$on('$stateChangeStart', function(event, transition) {
+    // //   event.preventDefault();
+    // //   console.log(1)
+
+    //   $rootScope.showLoading=true;
+
+    // })
+    // $rootScope.$on('$stateChangeSuccess', function(event, transition) {
+    // //   event.preventDefault();
+    // //   console.log(2)
+    //    $timeout(function(){
+    //   $rootScope.showLoading=false;
+
+    //   },1000)
+    // })
+}).constant('uibPaginationConfig', {
+    firstText: '第一页',
+    previousText: '上一页',
+    nextText: '下一页',
+    lastText: '最后一页',
+    boundaryLinks: false,
+    directionLinks: true,
+    itemsPerPageSelect: false
+});
 
 
 /**

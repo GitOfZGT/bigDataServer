@@ -15,18 +15,33 @@
 </aside>
 <div class="mains">
     <header class="main-top">
-         <!-- <div class="pull-left margin-left-20">
-            <a  class="head-links" z-backpath ui-sref="control-head.control-frame.control-hostall({witchpage:1})" ui-tooltip="云主机控制台" ui-tooltip-placement="bottom"><i class="fa fa-cubes"></i></a>
-            <a  class="head-links" z-backpath ui-sref="control-head.control-frame.control-hostall({witchpage:2})" ui-tooltip="网络控制台" ui-tooltip-placement="bottom"><i class="fa fa-diamond"></i></a>
-           </div> -->
+          <div class="pull-left margin-left-20" ng-show="showIframeWin">
+            <!-- <a  class="head-links"  ui-tooltip="云主机控制台" ui-tooltip-placement="bottom"><i class="fa fa-cubes"></i></a> -->
+            <a style="font-size:20px;" class="head-links" href="" ng-click="vm.closeIframeWin()" title="返回" ui-tooltip-placement="bottom"><i class="fa fa-angle-left"></i></a>
+           </div> 
      
         <!--<div class="users">欢迎，<a tip-bottom="vm.navurl">Admin<i class="fa fa-caret-down" ></i></a></div>-->
        
         <div class="pull-right">
             <user-menus template-url="{{vm.navurl}}"></user-menus>
         </div>
-      
+       
+      <div class="pull-right margin-right-5">
+          <i class="fa fa-superpowers"></i>
+        <span>{{vm.power}}</span>
+      </div>
+     <div class="pull-right msg">
+            <span ui-><i class="fa fa-commenting-o"></i></span>
+            <!-- <span class="msg-Num text-danger">1</span> -->
+        </div>
     </header>
     <section class="main-body" ui-view>
+    </section>
+
+    <section class="main-iframe-win" ng-show="showIframeWin">
+        <div class="iframe-loading" ng-show="iframeLoading">
+            <ui-loading type="spin" size="sm"></ui-loading>
+        </div>
+       <iframe id="iframeWin" src=""></iframe>
     </section>
 </div>

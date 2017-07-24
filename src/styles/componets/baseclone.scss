@@ -19,15 +19,17 @@
         dt{
             width:120px;
             background: $f3;
-
+            padding: 10px;
         }
         dt,dd{
             float:left;
-            padding:10px;
+            
         }
         
         dd{
+            padding:10px 10px 0;
             a{
+                margin-bottom: 10px;
                 text-align: center;
                 color:$color666;
                 display: inline-block;

@@ -18,7 +18,7 @@
             筛选
         </div>
         <div class="panel-body">
-            <div class="margin-bottom-10"><button class="btn" ng-disabled="vm.isMyBranch" ng-class="vm.isMyBranch?'btn-default text-default':'btn-primary-hoverborder'" ng-click="vm.myBranch()">我的部门应用</button></div>
+            <div class="margin-bottom-10"><button class="btn" ng-disabled="vm.isMyBranch" ng-class="vm.isMyBranch?'btn-default text-default':'btn-primary-hoverborder'" ng-click="vm.myBranch()" ng-if="!vm.super">我的部门应用</button></div>
             <div class="type-choose">
                 <dl class="clearfix" ng-show="vm.filtrate.keyword">
                     <dt>关键词</dt>
@@ -93,7 +93,7 @@
             <div class="text-center margin-top-10 margin-bottom-10" ng-show="!vm.usersList">
                 <ui-loading type="spin" size="sm"></ui-loading>
             </div>
-            <p class="text-center text-danger" ng-show="vm.usersList.length==0">无相关应用服务</p>
+            <p class="text-center text-danger" ng-show="vm.usersList.length==0">无相关数据</p>
         </section>
         <ui-pagination-group ng-model="vm.page.page" items-per-page="vm.page.page_size" total-items="vm.page.total" ng-change="vm.changePage()" on-refresh="vm.changePage()"></ui-pagination-group>
     </div>

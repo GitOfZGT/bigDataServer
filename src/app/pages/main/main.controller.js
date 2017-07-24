@@ -1,11 +1,13 @@
 import navlist from './user.nav.view.html';
 
 class Controller {
-    constructor($scope, $location, $state, httpServer) {
+    constructor($scope, $location, $state, httpServer,iframeWin) {
         "ngInject";
 
         var thisCtrl = this;
+        this._iframeWin=iframeWin;
         let user = JSON.parse(sessionStorage.getItem('thisUser'));
+        this.power=user.roleName;
         thisCtrl.navurl = navlist;
         console.log(user.permission)
         let linkdata = [{
@@ -60,6 +62,9 @@ class Controller {
         }
 
         thisCtrl.linkdata=linkdata.concat(adds);
+    }
+    closeIframeWin(){
+        this._iframeWin.close();
     }
 }
 

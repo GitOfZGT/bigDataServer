@@ -1,7 +1,7 @@
 class ctrl {
-    constructor(ApiUser, zNotification, $timeout) {
+    constructor(zNotification, $timeout) {
         'ngInject'
-        this._ApiUser = ApiUser;
+     
         this._zNotification = zNotification;
         this._timeout = $timeout;
         this.headInfo = {
@@ -60,8 +60,9 @@ class ctrl {
             roleArr.push(role);
             let branchrole=JSON.parse(sessionStorage.getItem('roleData'));
             branchrole.push(role);
+
             sessionStorage.setItem('roleData', JSON.stringify(branchrole));
-            sessionStorage.setItem('allroleData', JSON.stringify(branchrole));
+            sessionStorage.setItem('allroleData', JSON.stringify(roleArr));
             this._zNotification.success('创建成功');
             this.btnLoading =false;
         }, 200)

@@ -13,15 +13,23 @@
             </div>
         </form>
     </div>
-    <div class="panel panel-border" ng-show="vm.filtrate.keyword">
+    <div class="panel panel-border" ng-show="vm.super||vm.filtrate.keyword">
         <div class="panel-heading">
             筛选
         </div>
         <div class="panel-body">
             <div class="type-choose">
-                <dl class="clearfix">
+                <dl class="clearfix" ng-show="vm.filtrate.keyword">
                     <dt>关键词</dt>
                     <dd><a class="active">{{vm.filtrate.keyword}}<i class="fa fa-times margin-left-10 cursor-pointer" ng-click="vm.keywordClose()"></i></a></dd>
+                </dl>
+                <dl class="clearfix" ng-if="vm.super">
+                    <dt>地区</dt>
+                    <dd><a href="" ng-click="vm.selectRegion('region',a)" ng-class="{'active':a.active}" ng-repeat="a in vm.chosion.region">{{::a.name}}</a></dd>
+                </dl>
+                <dl class="clearfix" ng-if="vm.super">
+                    <dt>部门</dt>
+                    <dd><a href="" ng-click="vm.selectBranch('branch',a)" ng-class="{'active':a.active}" ng-repeat="a in vm.chosion.branch">{{::a.name}}</a></dd>
                 </dl>
             </div>
         </div>
@@ -52,11 +60,12 @@
                 <td><span>{{item.branch}}</span></td>
                 <td><span>{{item.email}}</span></td>
                 <td><span>{{item.mobile}}</span></td>
-                <td><a href="">修改</a><a href="" class="margin-left-15" ng-if="item.enbleRemove" ng-click="vm.removeRole(item.id)">删除</a></td>
+                <td><a href="">修改</a><a href="" class="margin-left-15" ng-if="item.enbleRemove" ng-click="vm.removeuser(item.id)">删除</a></td>
             </tr>
            
         </tbody>
       </table>
+     <p class="text-center text-danger" ng-show="vm.usersList.length==0">无相关数据</p>
       <div class="text-center margin-top-10 margin-bottom-10" ng-show="!vm.usersList">
                 <ui-loading type="spin" size="sm"></ui-loading>
             </div>

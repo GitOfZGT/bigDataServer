@@ -76,7 +76,7 @@
             <div class="text-center margin-top-10 margin-bottom-10" ng-show="!vm.usersList">
                 <ui-loading type="spin" size="sm"></ui-loading>
             </div>
-            <p class="text-center text-danger" ng-show="vm.usersList.length==0">无相关应用服务</p>
+            <p class="text-center text-danger" ng-show="vm.usersList.length==0">无相关数据</p>
         </section>
         <ui-pagination-group ng-model="vm.page.page" items-per-page="vm.page.page_size" total-items="vm.page.total" ng-change="vm.changePage()" on-refresh="vm.changePage()"></ui-pagination-group>
     </div>

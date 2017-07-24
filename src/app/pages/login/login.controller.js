@@ -20,18 +20,7 @@ class Controller {
             thisCtrl.registerdata.email = '';
             thisCtrl.registerdata.mobile = '';
         }
-        this.superRole = {
-            "id": 1,
-            "roleName": "超级管理员",
-            "permission": {
-                "appManage": true,
-                "userManage": true,
-                "roleManage": true,
-                "super": true,
-                "admin": true
-            },
-            "enbleRemove": false
-        };
+       
     }
     login() {
         let users = JSON.parse(sessionStorage.getItem('userData'));
@@ -42,19 +31,21 @@ class Controller {
                 var roles = JSON.parse(sessionStorage.getItem('allroleData'));
                 var thisBranchRole = [];
                 if (el.roleName == '超级管理员') {
-                    el.permission = this.superRole.permission;
-                    roles.shift();
+                    el.permission = roles.shift().permission;
+                   
                     sessionStorage.setItem('roleData', JSON.stringify(roles));
                 } else {
                     for (var j = 0; j < roles.length; j++) {
-                        if ((roles[j].region == undefined && roles[j].branch == undefined && el.roleName == roles[j].roleName) || (el.region == roles[j].region && el.branch == roles[j].branch && el.roleName == roles[j].roleName)) {
+                        if ((roles[j].region == '通用' && roles[j].branch == '通用' && el.roleName == roles[j].roleName) || (el.region == roles[j].region && el.branch == roles[j].branch && el.roleName == roles[j].roleName)) {
                             el.permission = roles[j].permission;
                             break;
                         }
-
+                        
+                        //获取当前用户对应的地区和部门的角色
                         if (el.region == roles[j].region && el.branch == roles[j].branch) {
                             thisBranchRole.push(roles[j]);
                         }
+                        //默认管理员和普通用户两种角色是通用的
                         thisBranchRole = roles.slice(1, 3).concat(thisBranchRole);
                         sessionStorage.setItem('roleData', JSON.stringify(thisBranchRole));
                     }
