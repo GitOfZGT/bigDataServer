@@ -5,10 +5,8 @@ export default function config($urlRouterProvider, $stateProvider) {
     "ngInject";
 
     $urlRouterProvider
-    .when('/main','/main/myapp')
-    .when('','/login');
-    // .otherwise('/main/cloud-host');
-
+    // .when('/main','/main/myapp')
+    .when('','/login/user');
     $stateProvider.state('pages', {
         url: '/main',
         controller: controller,

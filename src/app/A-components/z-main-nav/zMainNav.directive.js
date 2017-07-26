@@ -18,7 +18,7 @@ class zMainNav {
         scope.$watch(() => scope._location.path(), (newv) => {
             setTimeout(() => {
                 el.find('.active').removeClass('active');
-                angular.element(el).find("a[href='#"+newv+"']").addClass('active');
+                angular.element(el).find("a[href='#"+newv.split('?')[0]+"']").addClass('active');
             })
         })
     }

@@ -17,18 +17,32 @@ class ctrl {
                 branch: this.thisUser.branch
             };
         }
-       
+
         if (this.super) {
-            var region = JSON.parse(sessionStorage.getItem('region')),
-                branch = JSON.parse(sessionStorage.getItem('branch'));
-                 region.unshift({ name: '' });
-                  branch.unshift({ name: '' });
-            this.chosion = {
-                region: region,
-                branch: branch
-            }
+            //地区选择框
+            this.region = JSON.parse(localStorage.getItem('region'));
+            this.app.region='';
+            this.app.branch='';
+            this.region.unshift({ name: '' })
+            this.regionSelectList = this.region;
+            this.branchSelectList = [{ name: "" }];
+            this.getBranch();
         }
         this.btnName = '下一步';
+
+    }
+     getBranch() {
+        setTimeout(() => {
+            let branch = JSON.parse(localStorage.getItem('branch'));
+            branch = branch.filter((el) => {
+                if (this.app.region == el.region) {
+                    return true;
+                }
+            })
+            if (branch.length > 0)
+                this.app.branch = '';
+            this.branchSelectList = branch;
+        })
 
     }
     next() {

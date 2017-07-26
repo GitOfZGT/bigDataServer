@@ -1,11 +1,15 @@
 <aside class="side-bar">
     <header class="bar-top logo">
 
-        <span class="fa-stack fa-lg">
-        <i class="fa fa-heart fa-stack-2x" style="font-size:3em;"></i>
-        <i class="fa fa-database fa-stack-1x" style="color:#fff;"></i>
+        <div class="main-title">
+            <span class="fa-stack fa-lg">
+        <i class="fa fa-recycle fa-stack-2x" style="font-size:3em;"></i>
+        <!-- <i class="fa fa-database fa-stack-1x" style="color:#fff;"></i> -->
         </span>
-        <span class="logo">大数据应用服务框架</span>
+            <span class="logo">大数据应用服务框架</span>
+            <div class="main-little-title" ng-if="vm.admin">(后台管理)</div>
+        </div>
+
 
     </header>
     <section class="bar-body">
@@ -15,22 +19,22 @@
 </aside>
 <div class="mains">
     <header class="main-top">
-          <div class="pull-left margin-left-20" ng-show="showIframeWin">
+        <div class="pull-left margin-left-20" ng-show="showIframeWin">
             <!-- <a  class="head-links"  ui-tooltip="云主机控制台" ui-tooltip-placement="bottom"><i class="fa fa-cubes"></i></a> -->
             <a style="font-size:20px;" class="head-links" href="" ng-click="vm.closeIframeWin()" title="返回" ui-tooltip-placement="bottom"><i class="fa fa-angle-left"></i></a>
-           </div> 
-     
+        </div>
+
         <!--<div class="users">欢迎，<a tip-bottom="vm.navurl">Admin<i class="fa fa-caret-down" ></i></a></div>-->
-       
+
         <div class="pull-right">
             <user-menus template-url="{{vm.navurl}}"></user-menus>
         </div>
-       
-      <div class="pull-right margin-right-5">
-          <i class="fa fa-superpowers"></i>
-        <span>{{vm.power}}</span>
-      </div>
-     <div class="pull-right msg">
+
+        <div class="pull-right margin-right-5" ng-if="vm.admin">
+            <i class="fa fa-superpowers"></i>
+            <span>{{vm.power}}</span>
+        </div>
+        <div class="pull-right msg">
             <span ui-><i class="fa fa-commenting-o"></i></span>
             <!-- <span class="msg-Num text-danger">1</span> -->
         </div>
@@ -42,6 +46,6 @@
         <div class="iframe-loading" ng-show="iframeLoading">
             <ui-loading type="spin" size="sm"></ui-loading>
         </div>
-       <iframe id="iframeWin" src=""></iframe>
+        <iframe id="iframeWin" src=""></iframe>
     </section>
 </div>

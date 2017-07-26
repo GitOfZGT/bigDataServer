@@ -8,6 +8,7 @@ class userMenus {
          this.templateUrl=temp;
     }
     link(scope, el, attr) {
+        scope.exit='login({entry:"'+sessionStorage.getItem('entry')+'"})';
         scope.urls = attr.templateUrl;
         scope.src = scope.$root.headPortrait.imgs;
         let user= JSON.parse(sessionStorage.getItem('thisUser'));

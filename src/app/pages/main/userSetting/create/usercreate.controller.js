@@ -20,7 +20,7 @@ class ctrl {
         this.thisUser = JSON.parse(sessionStorage.getItem('thisUser'));
         this.super = this.thisUser.permission.super;
 
-        let roles = JSON.parse(sessionStorage.getItem('roleData'));
+        let roles = JSON.parse(localStorage.getItem('roleData'));
         //角色选择框
         let roleSelectList = [{ name: "" }];
         roles.forEach((el) => {
@@ -29,16 +29,14 @@ class ctrl {
             })
         })
         this.roleSelectList = roleSelectList;
-        var region = JSON.parse(sessionStorage.getItem('region'));
-        this.branch = JSON.parse(sessionStorage.getItem('branch'));
-        region.unshift({ name: '' });
-        this.branch.unshift({ name: '' });
+        this.region = JSON.parse(localStorage.getItem('region'));
         //地区选择框
-        this.regionSelectList = region;
-        this.branchSelectList = this.branch;
+        this.region.unshift({name:''})
+        this.regionSelectList = this.region;
+        this.branchSelectList = [{name:""}];
         this.user = {
             roleName: '',
-            region: '',
+            region: this.regionSelectList[0].name,
             branch: ''
         };
         this.permission = {
@@ -48,19 +46,26 @@ class ctrl {
         }
         this.btnName = '创建';
 
-
+        this.getBranch();
     }
-    swichInput() {
-        this.user.branch = '';
-        this.isInput = !this.isInput;
-    }
-    selectback() {
+    getBranch() {
+        setTimeout(() => {
+            let branch = JSON.parse(localStorage.getItem('branch'));
+            branch = branch.filter((el) => {
+                if (this.user.region == el.region) {
+                    return true;
+                }
+            })
+            if (branch.length > 0)
+                this.user.branch = '';
+            this.branchSelectList = branch;
+        })
 
     }
     create() {
         this.btnLoading = true;
         this._timeout(() => {
-            let userArr = JSON.parse(sessionStorage.getItem('userData'));
+            let userArr = JSON.parse(localStorage.getItem('userData'));
             let roleid = 0;
             userArr.forEach((el) => {
                 if (roleid < el.id) {
@@ -76,17 +81,15 @@ class ctrl {
                 email: this.user.email,
                 mobile: this.user.mobile,
                 password: this.user.password,
-                enbleRemove: true
+                enbleRemove: true,
+                useApp:[],
+                loveApp:[]
             }
 
             userArr.push(user);
             // console.log(userArr)
-            sessionStorage.setItem('userData', JSON.stringify(userArr));
-            if(this.super){
-                this.branch.push({name:this.user.branch});
-                this.branch.shift();
-                sessionStorage.setItem('branch', JSON.stringify(this.branch));
-            }
+            localStorage.setItem('userData', JSON.stringify(userArr));
+
             this._zNotification.success('创建成功');
             this.btnLoading = false;
         }, 200)

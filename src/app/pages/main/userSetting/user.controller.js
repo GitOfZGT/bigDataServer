@@ -7,17 +7,19 @@ class ctrl {
         this._timeout = $timeout;
         this._filter = $filter;
         this._zNotification = zNotification;
-        // this.AppsList = JSON.parse(sessionStorage.getItem('userData'));
+        // this.AppsList = JSON.parse(localStorage.getItem('userData'));
         this.thisUser = JSON.parse(sessionStorage.getItem('thisUser'));
         this.super = this.thisUser.permission.super;
         this.searchWord = '';
-        var region = JSON.parse(sessionStorage.getItem('region')),
-            branch = JSON.parse(sessionStorage.getItem('branch'));
-        region.unshift({ name: '全部', active: true });
-        branch.unshift({ name: '全部', active: true });
-           this.chosion = {
-            region: region,
-            branch: branch
+         this.region = JSON.parse(localStorage.getItem('region'));
+            // branch = JSON.parse(localStorage.getItem('branch')),
+            // use = JSON.parse(localStorage.getItem('use'));
+        this.region.unshift({ name: '全部', active: true });
+        // branch.unshift({ name: '全部', active: true });
+        // use.unshift({ name: '全部', active: true });
+        this.chosion = {
+            region: this.region,
+            branch: []
         }
         this.headInfo = {
             title: '用户管理',
@@ -45,12 +47,24 @@ class ctrl {
             region: '全部',
             branch: '全部',
         }
+          this.selectRegion('region', this.region[0]);
         this.filterApp();
         this.getList();
 
     }
+    getBranch() {
+        let branch = JSON.parse(localStorage.getItem('branch'));
+        branch = branch.filter((el) => {
+            if (this.filtrate.region == el.region) {
+                return true;
+            }
+        })
+        branch.unshift({ name: '全部'});
+        this.chosion.branch = branch;
+         this.selectBranch('branch', branch[0]);
+    }
     getuserData() {
-        let staticList = JSON.parse(sessionStorage.getItem('userData'));
+        let staticList = JSON.parse(localStorage.getItem('userData'));
 
         if (this.super) { //超级管理员
             for (let i = 0; i < staticList.length; i++) {
@@ -70,11 +84,11 @@ class ctrl {
         return staticList;
     }
     removeuser(id) {
-        var staticList = JSON.parse(sessionStorage.getItem('userData'));
+        var staticList = JSON.parse(localStorage.getItem('userData'));
         for (let i = 0; i < staticList.length; i++) {
             if (id == staticList[i].id) {
                 staticList.splice(i, 1);
-                sessionStorage.setItem('userData', JSON.stringify(staticList));
+                localStorage.setItem('userData', JSON.stringify(staticList));
                 this._zNotification.success("删除成功");
                 break;
             }
@@ -113,7 +127,7 @@ class ctrl {
     selectRegion(key, item) {
         this.setSeartionActive(key, item);
         this.filtrate.region = item.name;
-
+        this.getBranch();
         this.filterApp();
         this.getList();
     }

@@ -1,0 +1,61 @@
+<z-page-header header-info="vm.headInfo"></z-page-header>
+<header class="base-clone-content margin-bottom-20 margin-top-10">
+   
+    <div class="panel panel-border">
+        <div class="panel-heading">
+            筛选
+        </div>
+        <div class="panel-body">
+            
+            <div class="type-choose">
+                <dl class="clearfix flex-box" >
+                    <dt>地区</dt>
+                    <dd class="flex-1"><a href="" ng-click="vm.selectRegion('region',a)" ng-class="{'active':a.active}" ng-repeat="a in vm.chosion.region">{{::a.name}}</a></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-border">
+        <div class="panel-heading">
+            {{vm.filtrate.region}}部门管理
+        </div>
+        <div class="panel-body">
+            <div class="type-choose">
+                <dl class="clearfix flex-box" >
+                    <dt>部门</dt>
+                    <dd class="flex-1"><a href="" class="re-hover" ng-repeat="a in vm.chosion.branch">{{::a.name}}<i class="fa fa-times margin-left-10 cursor-pointer remove" ng-click="vm.removeBranch(a)"></i></a>
+                    <a  class="add cursor-pointer" ng-click="vm.addBranch()"><i class="fa fa-plus"></i></a>
+                    </dd>
+                </dl>
+                
+            </div>
+        </div>
+    </div>
+     <div class="panel panel-border expandDown" ng-show="vm.showAdd">
+        <div class="panel-heading">
+            添加部门
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal" name="addForm" ng-submit="addForm.$valid&&vm.add()">
+                <div class="form-group">
+                    <label for="" class="control-label col-sm-2">地区：</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" name="region" ng-model="vm.filtrate.region" disabled>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error':(addForm.branch.$touched||addForm.$submitted)&&addForm.branch.$error.required}">
+                    <label for="" class="control-label col-sm-2">部门名称：</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" ng-model="vm.addData.branch" name="branch" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3 col-sm-offset-2">
+                       <button type="submit" class="btn btn-primary btn-sm">确认</button>
+                       <button type="button" class="btn btn-default btn-sm" ng-click="vm.addBranch()">取消</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+     </div>
+</header>

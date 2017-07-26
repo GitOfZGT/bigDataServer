@@ -3,25 +3,25 @@
         <div class="panel-body">
             <span class="margin-right-15">开放设置：</span>
             <ui-radio-group ng-model="vm.setting" on-change="vm.seted(value)">
-                <ui-radio value="'1'" class="margin-right-10">全部可见</ui-radio>
-                <ui-radio value="'2'" class="margin-right-10">选择可见</ui-radio>
+                <ui-radio value="'1'" class="margin-right-10">全部部门</ui-radio>
+                <ui-radio value="'2'" class="margin-right-10">选择部门</ui-radio>
             </ui-radio-group>
         </div>
     </div>
     <div ng-show="vm.selectting">
         <div class="panel panel-border">
         <div class="panel-heading">
-            请选择此应用开放可见的其他部门
+            请选择此应用开放给其他部门
         </div>
         <div class="panel-body">
             <div class="type-choose">
-                <dl class="clearfix">
+                <dl class="clearfix flex-box">
                     <dt>选择地区</dt>
-                    <dd><a href="" ng-click="vm.selectRegion('region',a)" ng-class="{'active':a.active}" ng-repeat="a in vm.chosion.region">{{a.name}}</a></dd>
+                    <dd class="flex-1"><a href="" ng-click="vm.selectRegion('region',a)" ng-class="{'active':a.active}" ng-repeat="a in vm.chosion.region">{{a.name}}</a></dd>
                 </dl>
-                <dl class="clearfix">
+                <dl class="clearfix flex-box">
                     <dt>选择部门</dt>
-                    <dd>
+                    <dd class="flex-1">
                         <a ng-repeat="a in vm.chosion.branch">
                             <ui-checkbox checked="a.checked" on-change="vm.selectBranch(checked, a)" class="margin-right-10">{{a.name}}</ui-checkbox>
                         </a>

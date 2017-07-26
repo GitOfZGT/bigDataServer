@@ -329,4 +329,15 @@ $top-height:$top-h;
     }
 }
 
+.main-title{
+    position: relative;
+    .main-little-title{
+        position: absolute;
+        font-size: 14px;
+        bottom:11px;
+        left: 99px;
+        line-height: 1.4;
+    }
+}
+
 

@@ -6,25 +6,44 @@ class ctrl {
         this._zNotification = zNotification;
         $scope.$parent.vm.step = 2;
         this.app = $scope.$parent.app;
-        // console.log('app',this.app);
+        if(!this.app){
+            $state.go('pages.appcreate.base');
+            return;
+        }
         this.setting = '1';
-        var region = JSON.parse(sessionStorage.getItem('region')),
-            branch = JSON.parse(sessionStorage.getItem('branch'));
-        region[0].active = true;
+        this.region = JSON.parse(localStorage.getItem('region'));
+        this.User = JSON.parse(sessionStorage.getItem('thisUser'));
         // region.unshift({ name: '全部', active: true });
         // branch.unshift({ name: '全部', active: true });
         this.chosion = {
-            region: region,
-            branch: branch,
+            region: this.region,
+            branch: [],
             hasSelet: []
         }
         this.btnName = '应用接入';
         this.filterWord = {
-            region: region[0].name
+            region: ''
         }
-        if(!this.app){
-            $state.go('pages.appcreate.base');
-        }
+        this.selectRegion('region',this.region[0]);
+    }
+     getBranch() {
+        let branch = JSON.parse(localStorage.getItem('branch'));
+        branch = branch.filter((el) => {
+            if (this.filterWord.region == el.region&&!(this.User.region==el.region&&this.User.branch==el.name)) {
+                return true;
+            }
+        })
+        angular.forEach(branch, (el) => {
+            el.checked = false;
+            for (var i = 0; i < this.chosion.hasSelet.length; i++) {
+                if (this.chosion.hasSelet[i].region == this.filterWord.region && this.chosion.hasSelet[i].branch == el.name) {
+                    el.checked = true;
+                    break;
+                }
+            }
+        })
+        this.chosion.branch = branch;
+        // this.selectBranch('branch', branch[0]);
     }
     seted(value) {
         if (value == '1') {
@@ -53,17 +72,7 @@ class ctrl {
     selectRegion(key, item) {
         this.setSeartionActive(key, item);
         this.filterWord.region = item.name;
-        let branch = JSON.parse(sessionStorage.getItem('branch'));
-        angular.forEach(branch, (el) => {
-            el.checked = false;
-            for (var i = 0; i < this.chosion.hasSelet.length; i++) {
-                if (this.chosion.hasSelet[i].region == this.filterWord.region && this.chosion.hasSelet[i].branch == el.name) {
-                    el.checked = true;
-                    break;
-                }
-            }
-        })
-        this.chosion.branch = branch;
+        this.getBranch();
     }
     selectBranch(checked, item) {
         if (checked) {
@@ -95,8 +104,7 @@ class ctrl {
         if(this.btnLoading)return;
         this.btnLoading = true;
         setTimeout(() => {
-            var apps = JSON.parse(sessionStorage.getItem('appList'));
-            var myapp=JSON.parse(sessionStorage.getItem('myAppList'));
+            var apps = JSON.parse(localStorage.getItem('appList'));
             var capp = {
                 createTime: this._filter('date')(new Date().getTime(), 'yyyy-MM-dd'),
                 use: '用途1',
@@ -107,12 +115,10 @@ class ctrl {
                 url:this.app.url,
                 hasLove: false,
                 enabled: true,
-                openBrach: this.chosion.hasSelet
+                openBranch: this.chosion.hasSelet
             }
             apps.unshift(capp);
-            myapp.unshift(capp);
-            sessionStorage.setItem('appList', JSON.stringify(apps));
-            sessionStorage.setItem('myAppList', JSON.stringify(myapp));
+            localStorage.setItem('appList', JSON.stringify(apps));
             this.btnLoading = false;
             this._zNotification.success("应用进入成功");
         }, 250)

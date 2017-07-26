@@ -2,30 +2,29 @@
     <img ng-src="{{vm.bg.login}}" class="login-bg" alt="">
     <div class="login-title">
         <header class="logo">
-        <span class="fa-stack fa-lg">
-        <i class="fa fa-heart fa-stack-2x" style="font-size:3em;"></i>
-        <i class="fa fa-database fa-stack-1x" style="color:#3787DD;"></i>
+                 <span class="fa-stack fa-lg">
+        <i class="fa fa-recycle fa-stack-2x" style="font-size:3em;"></i>
+        <!-- <i class="fa fa-database fa-stack-1x" style="color:#fff;"></i> -->
         </span>
-        <span>大数据应用服务框架</span>
-
-    </header>
+            <span>大数据应用服务框架<span class="little-title">{{vm.admin}}</span></span>
+        </header>
     </div>
     <div class="login-body slide-left">
-    <!-- <div class="login-body slide-left" ng-if="!vm.isRegister"> -->
+        <!-- <div class="login-body slide-left" ng-if="!vm.isRegister"> -->
         <div class="bg"></div>
         <form class="content" ng-submit="loginForm.$valid&&vm.login()" ng-class="{'loginerror':vm.loginerror}" name="loginForm">
             <div class="content-name">登录</div>
-           
+
             <div class="form-group">
-                     <p class="text-danger show-error" ng-show="vm.loginerror">用户名或密码不正确。</p>
-                    <input ng-focus="vm.focus()" type="text" name="username" ng-model="vm.logindata.username" class="form-control" id="" placeholder="用户名" required>
+                <p class="text-danger show-error" ng-show="vm.loginerror">用户名或密码不正确。</p>
+                <input ng-focus="vm.focus()" type="text" name="username" ng-model="vm.logindata.username" class="form-control" id="" placeholder="用户名" required>
             </div>
             <div class="form-group">
-                    <input ng-focus="vm.focus()" type="password"  name="password" ng-model="vm.logindata.password"  class="form-control" id="" placeholder="密码" required>
+                <input ng-focus="vm.focus()" type="password" name="password" ng-model="vm.logindata.password" class="form-control" id="" placeholder="密码" required>
             </div>
             <div class="form-group">
-              <button type="submit" class="btn btn-primary">登录</button>
-              <!-- <button type="button" class="btn btn-default pull-right" ng-click="vm.toRegister()">注册</button> -->
+                <button type="submit" class="btn btn-primary">登录</button>
+                <!-- <button type="button" class="btn btn-default pull-right" ng-click="vm.toRegister()">注册</button> -->
 
             </div>
         </form>

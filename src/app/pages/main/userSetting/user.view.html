@@ -23,13 +23,13 @@
                     <dt>关键词</dt>
                     <dd><a class="active">{{vm.filtrate.keyword}}<i class="fa fa-times margin-left-10 cursor-pointer" ng-click="vm.keywordClose()"></i></a></dd>
                 </dl>
-                <dl class="clearfix" ng-if="vm.super">
+                <dl class="clearfix flex-box" ng-if="vm.super">
                     <dt>地区</dt>
-                    <dd><a href="" ng-click="vm.selectRegion('region',a)" ng-class="{'active':a.active}" ng-repeat="a in vm.chosion.region">{{::a.name}}</a></dd>
+                    <dd class="flex-1"><a href="" ng-click="vm.selectRegion('region',a)" ng-class="{'active':a.active}" ng-repeat="a in vm.chosion.region">{{::a.name}}</a></dd>
                 </dl>
-                <dl class="clearfix" ng-if="vm.super">
+                <dl class="clearfix flex-box" ng-if="vm.super">
                     <dt>部门</dt>
-                    <dd><a href="" ng-click="vm.selectBranch('branch',a)" ng-class="{'active':a.active}" ng-repeat="a in vm.chosion.branch">{{::a.name}}</a></dd>
+                    <dd class="flex-1"><a href="" ng-click="vm.selectBranch('branch',a)" ng-class="{'active':a.active}" ng-repeat="a in vm.chosion.branch">{{::a.name}}</a></dd>
                 </dl>
             </div>
         </div>

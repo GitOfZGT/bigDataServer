@@ -16,24 +16,24 @@
             筛选
         </div>
         <div class="panel-body">
-            <div class="margin-bottom-10"><button class="btn" ng-disabled="vm.isMyBranch" ng-class="vm.isMyBranch?'btn-default text-default':'btn-primary-hoverborder'" ng-click="vm.myBranch()" ng-if="!vm.super">我的部门应用</button></div>
+            <div class="margin-bottom-10"><button class="btn" ng-disabled="vm.isMyBranch" ng-class="vm.isMyBranch?'btn-default text-danger':'btn-info'" ng-click="vm.myBranch()" ng-if="!vm.super">我的部门应用<span ng-show="vm.isMyBranch"> √</span></button></div>
             <div class="type-choose">
                 <dl class="clearfix" ng-show="vm.filtrate.keyword">
                     <dt>关键词</dt>
                     <dd><a class="active">{{vm.filtrate.keyword}}<i class="fa fa-times margin-left-10 cursor-pointer" ng-click="vm.keywordClose()"></i></a></dd>
                 </dl>
-                <dl class="clearfix">
+                <dl class="clearfix flex-box">
                     <dt>地区</dt>
-                    <dd><a href="" ng-click="vm.selectRegion('region',a)" ng-class="{'active':a.active}" ng-repeat="a in vm.chosion.region">{{::a.name}}</a></dd>
+                    <dd class="flex-1"><a href="" ng-click="vm.selectRegion('region',a)" ng-class="{'active':a.active}" ng-repeat="a in vm.chosion.region">{{::a.name}}</a></dd>
                 </dl>
-                <dl class="clearfix">
+                <dl class="clearfix flex-box">
                     <dt>部门</dt>
-                    <dd><a href="" ng-click="vm.selectBranch('branch',a)" ng-class="{'active':a.active}" ng-repeat="a in vm.chosion.branch">{{::a.name}}</a></dd>
+                    <dd class="flex-1"><a href="" ng-click="vm.selectBranch('branch',a)" ng-class="{'active':a.active}" ng-repeat="a in vm.chosion.branch">{{::a.name}}</a></dd>
                 </dl>
-                <dl class="clearfix">
+                <!-- <dl class="clearfix">
                     <dt>业务用途</dt>
                     <dd><a href="" ng-click="vm.selectUse('use',a)" ng-class="{'active':a.active}" ng-repeat="a in vm.chosion.use">{{::a.name}}</a></dd>
-                </dl>
+                </dl> -->
             </div>
         </div>
     </div>
@@ -59,13 +59,13 @@
                     <div class="panel-body user-infos">
                        <dl class="flex-box">
                             <dt class="padding-right-10">所属地区 : </dt>
-                            <dd class="flex-1">{{item.region}}</dd>
+                            <dd class="flex-1">{{::item.region}}</dd>
                             <dt class="padding-right-10">所属部门 : </dt>
-                            <dd class="flex-1">{{item.branch}}</dd>
+                            <dd class="flex-1">{{::item.branch}}</dd>
                         </dl>
                         <dl class="flex-box">
                             <dt class="padding-right-10">上线时间 : </dt>
-                            <dd class="flex-1">{{item.createTime}}</dd>
+                            <dd class="flex-1">{{::item.createTime}}</dd>
                         </dl>
                         <dl class="flex-box">
                             <dt class="padding-right-10">主要用途 : </dt>

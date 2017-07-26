@@ -16,31 +16,45 @@ class ctrl {
                 }
             ]
         }
-        this.user = {};
+           //登录的用户：
+        this.thisUser = JSON.parse(sessionStorage.getItem('thisUser'));
+        this.super = this.thisUser.permission.super;
+         this.region = JSON.parse(localStorage.getItem('region'));
+        //地区选择框
+        this.regionSelectList = this.region;
+        this.branchSelectList = [{name:''}];
+        this.user = {
+            roleName: '',
+            region: this.regionSelectList[0].name,
+            branch: ''
+        };
         this.permission = {
             appManage: false,
             userManage: false,
             roleManage: false
         }
         this.btnName = '创建';
-        // if (detail) {
-        //     this.btnName = '应用修改';
-        //     this.userId=true;
-        //    this.user = {
-        //         "username": detail.detail.username,
-        //         "ct_user_id": detail.detail.ct_user_id,
-        //         "mobile": detail.detail.mobile,
-        //         "ct_account_id": re.detail.ct_account_id,
-        //         "email": detail.detail.email
-        //     }
-        // }
-        this.thisUser=JSON.parse(sessionStorage.getItem('thisUser'));
+        this.getBranch();
+
+    }
+     getBranch() {
+        setTimeout(() => {
+            let branch = JSON.parse(localStorage.getItem('branch'));
+            branch = branch.filter((el) => {
+                if (this.user.region == el.region) {
+                    return true;
+                }
+            })
+            if (branch.length > 0)
+                this.user.branch = '';
+            this.branchSelectList = branch;
+        })
 
     }
     create() {
         this.btnLoading = true;
         this._timeout(() => {
-            let roleArr = JSON.parse(sessionStorage.getItem('allroleData'));
+            let roleArr = JSON.parse(localStorage.getItem('roleData'));
             let roleid=0;
             roleArr.forEach((el)=>{
                 if(roleid<el.id){
@@ -56,13 +70,19 @@ class ctrl {
                 region:this.thisUser.region,
                 branch:this.thisUser.branch
             }
-            
+            var admin=false;
+            for(var ky in this.permission){
+                    if(this.permission[ky]){
+                        console.log(this.permission[ky])
+                        admin=true;
+                        break;
+                    }
+            }
+            if(admin){
+                role.permission.admin=admin;
+            }
             roleArr.push(role);
-            let branchrole=JSON.parse(sessionStorage.getItem('roleData'));
-            branchrole.push(role);
-
-            sessionStorage.setItem('roleData', JSON.stringify(branchrole));
-            sessionStorage.setItem('allroleData', JSON.stringify(roleArr));
+            localStorage.setItem('roleData', JSON.stringify(roleArr));
             this._zNotification.success('创建成功');
             this.btnLoading =false;
         }, 200)

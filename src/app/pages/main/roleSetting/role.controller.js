@@ -7,16 +7,18 @@ class ctrl {
         this._timeout = $timeout;
         this._filter = $filter;
         this._zNotification = zNotification;
-        // this.AppsList = JSON.parse(sessionStorage.getItem('roleData'));
+        // this.AppsList = JSON.parse(localStorage.getItem('roleData'));
         this.User = JSON.parse(sessionStorage.getItem('thisUser'));
         this.searchWord = '';
-        var region = JSON.parse(sessionStorage.getItem('region')),
-            branch = JSON.parse(sessionStorage.getItem('branch'));
-        region.unshift({ name: '全部', active: true });
-        branch.unshift({ name: '全部', active: true });
+       this.region = JSON.parse(localStorage.getItem('region'));
+            // branch = JSON.parse(localStorage.getItem('branch')),
+            // use = JSON.parse(localStorage.getItem('use'));
+        this.region.unshift({ name: '全部', active: true });
+        // branch.unshift({ name: '全部', active: true });
+        // use.unshift({ name: '全部', active: true });
         this.chosion = {
-            region: region,
-            branch: branch
+            region: this.region,
+            branch: []
         }
         this.headInfo = {
             title: '角色管理',
@@ -43,28 +45,29 @@ class ctrl {
             region: '全部',
             branch: '全部',
         }
+         this.selectRegion('region', this.region[0]);
         this.filterApp();
         this.getList();
 
 
     }
+     getBranch() {
+        let branch = JSON.parse(localStorage.getItem('branch'));
+        branch = branch.filter((el) => {
+            if (this.filtrate.region == el.region) {
+                return true;
+            }
+        })
+        branch.unshift({ name: '全部'});
+        this.chosion.branch = branch;
+         this.selectBranch('branch', branch[0]);
+    }
     removeRole(id) {
-        var staticList = JSON.parse(sessionStorage.getItem('roleData'));
+        var staticList = JSON.parse(localStorage.getItem('roleData'));
         for (let i = 0; i < staticList.length; i++) {
             if (id == staticList[i].id) {
                 staticList.splice(i, 1);
-                sessionStorage.setItem('roleData', JSON.stringify(staticList));
-                if (this.User.permission.super) {
-                    let allrole = JSON.parse(sessionStorage.getItem('allroleData'));
-                    for (let i = 0; i < allrole.length; i++) {
-                        if (id == allrole[i].id) {
-                            allrole.splice(i, 1);
-                            sessionStorage.setItem('allroleData', JSON.stringify(allrole));
-                            break;
-                        }
-                    }
-
-                }
+                localStorage.setItem('roleData', JSON.stringify(staticList));
                 this._zNotification.success("删除成功");
                 break;
             }
@@ -75,7 +78,7 @@ class ctrl {
     }
     filterApp() {
         this.page.page = 1;
-        var staticList = JSON.parse(sessionStorage.getItem('roleData'));
+        var staticList = JSON.parse(localStorage.getItem('roleData'));
         //关键词过滤
         if (this.filtrate.keyword != '') {
             staticList = this._filter('filter')(staticList, this.filtrate.keyword);
@@ -104,13 +107,20 @@ class ctrl {
                     }
                 });
             }
+        }else{
+            //获取登录用户的部门对应角色
+           staticList= staticList.filter((el)=>{
+                if((el.region==this.User.region&&el.branch==this.User.branch)||el.region=="通用"){
+                    return true;
+                }
+            });
         }
         this.AppsList = staticList;
     }
     selectRegion(key, item) {
         this.setSeartionActive(key, item);
         this.filtrate.region = item.name;
-
+this.getBranch();
         this.filterApp();
         this.getList();
     }

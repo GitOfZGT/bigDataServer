@@ -6,20 +6,16 @@ class ctrl {
         this._state = $state;
         this._timeout = $timeout;
         this._filter = $filter;
-        this.User = JSON.parse(sessionStorage.getItem('thisUser'));
-        this.super = this.User.permission.super;
-        this.AppsList = JSON.parse(sessionStorage.getItem('appList'));
         this.searchWord = '';
-        var region = JSON.parse(sessionStorage.getItem('region')),
-            branch = JSON.parse(sessionStorage.getItem('branch')),
-            use = JSON.parse(sessionStorage.getItem('use'));
-        region.unshift({ name: '全部', active: true });
-        branch.unshift({ name: '全部', active: true });
-        use.unshift({ name: '全部', active: true });
+        this.region = JSON.parse(localStorage.getItem('region'));
+        // branch = JSON.parse(localStorage.getItem('branch')),
+        // use = JSON.parse(localStorage.getItem('use'));
+        this.region.unshift({ name: '全部', active: true });
+        // branch.unshift({ name: '全部', active: true });
+        // use.unshift({ name: '全部', active: true });
         this.chosion = {
-            region: region,
-            branch: branch,
-            use: use
+            region: this.region,
+            branch: []
         }
         this.headInfo = {
             title: '应用服务管理',
@@ -40,7 +36,6 @@ class ctrl {
             page_size: 6,
             total: 0
         }
-        this.getList();
 
         //筛选项：
         this.filtrate = {
@@ -49,10 +44,38 @@ class ctrl {
             branch: '全部',
             use: '全部'
         }
+        // this.selectRegion('region', this.region[0]);
+        this.getThisUser();
+         this.myBranch();
+    }
+    getThisUser() {
+        this.User = JSON.parse(sessionStorage.getItem('thisUser'));
+        this.super = this.User.permission.super;
+        this.getApps();
+    }
+     getApps() {
+        let allapp = JSON.parse(localStorage.getItem('appList'));
+        this.Apps = allapp.filter((el) => {
+            
+            return true;
+        });
+        this.filterApp();
+    }
+    getBranch() {
+        let branch = JSON.parse(localStorage.getItem('branch'));
+        branch = branch.filter((el) => {
+            if (this.filtrate.region == el.region) {
+                return true;
+            }
+        })
+        branch.unshift({ name: '全部' });
+        this.chosion.branch = branch;
+        this.selectBranch('branch', branch[0]);
     }
     notMyBranch() {
         if (this.filtrate.region == this.User.region && this.filtrate.branch == this.User.branch) {
             this.isMyBranch = true;
+
         } else {
             this.isMyBranch = false;
         }
@@ -68,22 +91,20 @@ class ctrl {
         }
     }
     myBranch() {
-        if (this.isMyBranch) {
-            return;
-        }
-        this.isMyBranch = true;
         this.filtrate.keyword = '';
         this.searchWord = '';
         this.filtrate.region = this.User.region;
-        this.filtrate.branch = this.User.branch;
+
         this.selectRB('region');
+        this.getBranch();
+        this.filtrate.branch = this.User.branch;
         this.selectRB('branch');
         this.filterApp();
         this.getList();
     }
     filterApp() {
         this.page.page = 1;
-        var staticList = JSON.parse(sessionStorage.getItem('appList'));
+        var staticList = this.Apps.slice(0);
         //关键词过滤
         if (this.filtrate.keyword != '') {
             staticList = this._filter('filter')(staticList, this.filtrate.keyword);
@@ -114,13 +135,30 @@ class ctrl {
             });
         }
         this.notMyBranch();
+        if (this.super) {
+            staticList.forEach(function(element) {
+                element.enabelEdit = true;
+                element.enabelRemove = true;
+            });
+        } else {
+            staticList.forEach((element) => {
+                if (this.isMyBranch) {
+                    element.enabelEdit = true;
+                    element.enabelRemove = true;
+                }else{
+                    element.enabelEdit = false;
+                    element.enabelRemove = false;
+                }
+            });
+        }
+
         this.AppsList = staticList;
     }
 
     selectRegion(key, item) {
         this.setSeartionActive(key, item);
         this.filtrate.region = item.name;
-
+        this.getBranch();
         this.filterApp();
         this.getList();
     }

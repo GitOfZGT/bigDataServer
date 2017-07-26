@@ -116,6 +116,7 @@
          border-top: $bh solid #666;
      }
      .z-select-list {
+         overflow: auto;
          display: none;
          position: absolute;
          z-index: 78;

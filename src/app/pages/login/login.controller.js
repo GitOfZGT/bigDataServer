@@ -1,9 +1,10 @@
 import imgsrc from '../../images/registerbg.png';
 class Controller {
-    constructor($state, $scope, httpServer) {
+    constructor($state, $scope, httpServer,$stateParams) {
         "ngInject";
         var thisCtrl = this;
         this._state = $state;
+        this._stateParams=$stateParams;
         this.bg = {
             login: imgsrc
         }
@@ -20,38 +21,44 @@ class Controller {
             thisCtrl.registerdata.email = '';
             thisCtrl.registerdata.mobile = '';
         }
-       
+        sessionStorage.setItem('entry',this._stateParams.entry)
+       this.admin='';
+       if(this._stateParams.entry=='admin'){
+           this.admin='(后台管理)';
+
+       }
     }
     login() {
-        let users = JSON.parse(sessionStorage.getItem('userData'));
+        let users = JSON.parse(localStorage.getItem('userData'));
         for (var i = 0; i < users.length; i++) {
             var el = users[i];
             if (el.userName == this.logindata.username && el.password == this.logindata.password) {
                 //当前用户获取对应权限
-                var roles = JSON.parse(sessionStorage.getItem('allroleData'));
-                var thisBranchRole = [];
+                var roles = JSON.parse(localStorage.getItem('roleData'));
                 if (el.roleName == '超级管理员') {
-                    el.permission = roles.shift().permission;
-                   
-                    sessionStorage.setItem('roleData', JSON.stringify(roles));
+                    let superRole=JSON.parse(localStorage.getItem('superRole'));
+                    el.permission = superRole[0].permission;
                 } else {
                     for (var j = 0; j < roles.length; j++) {
                         if ((roles[j].region == '通用' && roles[j].branch == '通用' && el.roleName == roles[j].roleName) || (el.region == roles[j].region && el.branch == roles[j].branch && el.roleName == roles[j].roleName)) {
                             el.permission = roles[j].permission;
                             break;
                         }
-                        
-                        //获取当前用户对应的地区和部门的角色
-                        if (el.region == roles[j].region && el.branch == roles[j].branch) {
-                            thisBranchRole.push(roles[j]);
-                        }
-                        //默认管理员和普通用户两种角色是通用的
-                        thisBranchRole = roles.slice(1, 3).concat(thisBranchRole);
-                        sessionStorage.setItem('roleData', JSON.stringify(thisBranchRole));
                     }
                 }
+                //如果是后台管理页面，没有管理权限，就当用户不存在
+                if(this._stateParams.entry=='admin'&&!el.permission.admin){
+                    this.loginerror = true;
+                    break;
+                }
+                var mainChild='myapp';
+                if(this._stateParams.entry=='admin'){
+                    mainChild='appSetting';
+                }
+                
                 sessionStorage.setItem('thisUser', JSON.stringify(el));
-                this._state.go('pages');
+                console.log(el)
+                this._state.go('pages.'+mainChild,{entry:this._stateParams.entry});
                 break;
             } else {
                 this.loginerror = true;
