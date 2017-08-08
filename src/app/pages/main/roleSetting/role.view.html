@@ -38,6 +38,9 @@
 <div class="panel panel-border">
     <div class="panel-heading">
         角色列表
+         <div class="list-loading" ng-show="vm.listLoading">
+            <ui-loading type="spin" size="sm"></ui-loading>
+        </div>
     </div>
     <div class="panel-body">
       <table class="table">
@@ -54,15 +57,17 @@
                 <td><span>{{item.roleName}}</span></td>
                 <td><span>{{item.region}}</span></td>
                 <td><span>{{item.branch}}</span></td>
-                <td><a href="" ng-hide="item.hideRole">权限设置</a><a href="" class="margin-left-15" ng-if="item.enbleRemove" ng-click="vm.removeRole(item.id)">删除</a></td>
+                <td>
+
+                    <a href="" ui-popover-template="vm.showRoleHtml" popover-trigger="focus" popover-placement="left">查看权限</a>
+                    <a href="" class="margin-left-15" ng-hide="item.hideRole">权限设置</a>
+                    <a href="" class="margin-left-15" ng-if="item.enbleRemove" ng-click="vm.removeRole(item.id)">删除</a></td>
             </tr>
            
         </tbody>
       </table>
      <p class="text-center text-danger" ng-show="vm.usersList.length==0">无相关数据</p>
-      <div class="text-center margin-top-10 margin-bottom-10" ng-show="!vm.usersList">
-                <ui-loading type="spin" size="sm"></ui-loading>
-            </div>
+    
         <ui-pagination-group ng-model="vm.page.page" items-per-page="vm.page.page_size" total-items="vm.page.total" ng-change="vm.changePage()" on-refresh="vm.changePage()"></ui-pagination-group>
     </div>
 </div>

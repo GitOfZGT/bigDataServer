@@ -590,9 +590,7 @@ ui-accordion .panel.panel-open .panel-heading {
         -ms-transform: scale(1);
         transform: scale(1); }
     .checkbox-wrap .checkbox-box.checkbox-box-disabled {
-      cursor: not-allowed;
-      background: #cccccc;
-      border-color: #cccccc; }
+      cursor: not-allowed; }
   .checkbox-wrap.success .checkbox-box.checkbox-box-checked {
     background: #3CBC8D;
     border-color: #3CBC8D; }

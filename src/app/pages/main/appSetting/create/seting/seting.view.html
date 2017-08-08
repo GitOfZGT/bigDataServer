@@ -11,7 +11,7 @@
     <div ng-show="vm.selectting">
         <div class="panel panel-border">
         <div class="panel-heading">
-            请选择此应用开放给其他部门
+            请选择此应用开放给的其他部门
         </div>
         <div class="panel-body">
             <div class="type-choose">
@@ -48,7 +48,7 @@
 
 <div class="main-footer padding-right-15 padding-top-10">
     <div class="pull-left margin-left-10">
-        <a class="btn btn-primary-hoverborder" ui-sref="pages.appcreate.base">上一步</a>
+        <button type="button" class="btn btn-primary-hoverborder" ui-sref="pages.appcreate.base">上一步</button>
     </div>
     <div class="pull-right"><button type="submit" class="btn btn-primary btn-sm" ng-click="vm.create()"><span ng-show="vm.btnLoading"><i class="fa fa-cog fa-spin fa-fw fa-lg" ></i></span> <span>{{vm.btnName}}</span></button></div>
 </div>

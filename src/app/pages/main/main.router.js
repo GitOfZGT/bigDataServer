@@ -6,6 +6,7 @@ export default function config($urlRouterProvider, $stateProvider) {
 
     $urlRouterProvider
     // .when('/main','/main/myapp')
+    .when('/login','/login/user')
     .when('','/login/user');
     $stateProvider.state('pages', {
         url: '/main',

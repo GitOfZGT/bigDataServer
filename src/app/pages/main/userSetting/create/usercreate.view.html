@@ -13,7 +13,7 @@
     <div class="form-group" ng-class="{'has-error':(createForm.$submitted)&&vm.user.roleName==''}">
         <label for="" class="control-label col-md-3 col-lg-2">分配角色:<span class="text-danger">*</span></label>
         <div class="col-md-5 col-lg-4">
-            <z-select select-list-data="vm.roleSelectList"  select-model="vm.user.roleName"></z-select>
+            <z-select select-list-data="vm.roleSelectList"  select-model="vm.user.roleName" placeholder="--请选择角色--"></z-select>
             <!--<div class="text-danger font-size-12 margin-top-5">有效用户名</div>-->
         </div>
         <div class="control-label col-md-4 col-lg-6">
@@ -23,7 +23,7 @@
     <div class="form-group" ng-class="{'has-error':(createForm.$submitted)&&vm.user.region==''}" ng-if="vm.super">
         <label for="" class="control-label col-md-3 col-lg-2">地区:<span class="text-danger">*</span></label>
         <div class="col-md-5 col-lg-4">
-            <z-select select-list-data="vm.regionSelectList"  select-model="vm.user.region" select-callback="vm.getBranch()"></z-select>
+            <z-select select-list-data="vm.regionSelectList"  select-model="vm.user.region" select-callback="vm.getBranch()" placeholder="--请选择地区--"></z-select>
             <!--<div class="text-danger font-size-12 margin-top-5">有效用户名</div>-->
         </div>
         <div class="control-label col-md-4 col-lg-6">
@@ -33,7 +33,7 @@
     <div class="form-group" ng-class="{'has-error':(createForm.$submitted&&!vm.isInput&&vm.user.branch=='')||((createForm.branch.$touched||createForm.$submitted)&&vm.isInput&&createForm.branch.$error.required)}" ng-if="vm.super">
         <label for="" class="control-label col-md-3 col-lg-2">部门:<span class="text-danger">*</span></label>
         <div class="col-md-5 col-lg-4">
-            <z-select select-list-data="vm.branchSelectList"  select-model="vm.user.branch"></z-select>
+            <z-select select-list-data="vm.branchSelectList"  select-model="vm.user.branch" placeholder="--请选择部门--"></z-select>
         </div>
         <div class="control-label col-md-4 col-lg-6">
             <span class="text-info pull-left">!</span>

@@ -38,6 +38,9 @@
 <div class="panel panel-border">
     <div class="panel-heading">
         用户列表
+         <div class="list-loading" ng-show="vm.listLoading">
+            <ui-loading type="spin" size="sm"></ui-loading>
+        </div>
     </div>
     <div class="panel-body">
       <table class="table">
@@ -66,9 +69,7 @@
         </tbody>
       </table>
      <p class="text-center text-danger" ng-show="vm.usersList.length==0">无相关数据</p>
-      <div class="text-center margin-top-10 margin-bottom-10" ng-show="!vm.usersList">
-                <ui-loading type="spin" size="sm"></ui-loading>
-            </div>
+     
         <ui-pagination-group ng-model="vm.page.page" items-per-page="vm.page.page_size" total-items="vm.page.total" ng-change="vm.changePage()" on-refresh="vm.changePage()"></ui-pagination-group>
     </div>
 </div>

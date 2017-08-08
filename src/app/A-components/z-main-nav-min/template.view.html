@@ -1,0 +1,8 @@
+
+    <ul class="main-nav-min">
+        <li ng-repeat="nav in navData" class="margin-bottom-10">
+            <a ng-if="!nav.liner" href="{{nav.link}}" ui-tooltip-placement="right" ui-tooltip="{{nav.name}}" ui-tooltip-trigger="mouseenter" ui-tooltip-append-to-body="false">
+                <i class="fa" ng-class="nav.icon"></i>
+            </a>
+        </li>
+    </ul>

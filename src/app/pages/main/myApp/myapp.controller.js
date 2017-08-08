@@ -1,5 +1,5 @@
 class ctrl {
-    constructor(zAlert, $state, $timeout, $filter, zNotification, iframeWin) {
+    constructor(zAlert, $state, $timeout, $filter, zNotification, iframeWin,appDetails) {
         'ngInject'
 
         this._zAlert = zAlert;
@@ -7,19 +7,19 @@ class ctrl {
         this._timeout = $timeout;
         this._filter = $filter;
         this._iframeWin = iframeWin;
+         this._appDetails=appDetails;
         this._zNotification = zNotification;
 
         this.searchWord = '';
 
         this.headInfo = {
-            title: '我的应用',
+            title: '可用的应用服务',
             btnGroup: [],
             crumbs: [{
-                    name: '首页',
-                    router: 'pages'
+                    name: '首页'
                 },
                 {
-                    name: '我的应用'
+                    name: '可用的应用服务'
                 }
             ],
             hideBack: true
@@ -27,7 +27,7 @@ class ctrl {
 
         this.page = {
                 page: 1,
-                page_size: 6,
+                page_size: 12,
                 total: 0
             }
             //筛选项：
@@ -38,6 +38,9 @@ class ctrl {
         this.getList();
 
 
+    }
+     openDetail(item){
+        this._appDetails.open(item);
     }
     setUsers() {
         sessionStorage.setItem('thisUser', JSON.stringify(this.User));

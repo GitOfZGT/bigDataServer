@@ -1,6 +1,7 @@
 <z-page-header header-info="vm.headInfo"></z-page-header>
 <header class="base-clone-content margin-bottom-20 margin-top-10">
-    <div class="margin-bottom-20 clearfix">
+   <div class="panel panel-border-shadow">
+        <div class="panel-body clearfix">
         <div class="pull-left">
             <a href="" class="btn btn-primary-hoverborder" ui-sref="pages.apps">前往应用服务共享中心</a>
         </div>
@@ -13,9 +14,13 @@
             </div>
         </form>
     </div>
-    <div class="panel panel-border" ng-show="vm.filtrate.keyword">
+   </div>
+    <div class="panel panel-border-shadow" ng-show="vm.filtrate.keyword">
         <div class="panel-heading">
             筛选
+            <div class="list-loading" ng-show="vm.listLoading">
+            <ui-loading type="spin" size="sm"></ui-loading>
+        </div>
         </div>
         <div class="panel-body">
             <div class="type-choose">
@@ -27,60 +32,46 @@
         </div>
     </div>
 </header>
-<div class="panel panel-border">
-    <div class="panel-heading">
-        应用服务列表
-    </div>
-    <div class="panel-body">
-        <section class="row" z-interleave>
-            <div class="col-md-6 col-lg-4 user" z-interleave-class="user-clear" ng-repeat="item in vm.usersList">
-                <div class="panel panel-border panel-border-shadow border-left-strong">
-                    <z-more-panel open-panel="item.openMoreData"></z-more-panel>
-                    <div class="panel-heading clearfix">
-                        <strong class="pull-left user-name">{{item.appname}}</strong>
-                        <div class="panel-tool pull-right">
-                             <i ng-click="vm.pushLove(item)" class="fa cursor-pointer margin-right-10" ng-class="item.hasLove?'fa-heart':'fa-heart-o'" ui-tooltip="{{item.hasLove?'取消收藏':'收藏'}}"></i>
-                            <!-- <i class="fa fa-pencil cursor-pointer margin-right-10" ui-tooltip="修改" ng-click="vm.editUser(item.id)"></i>   -->
-                            <!-- <i class="fa fa-trash-o cursor-pointer" ng-click="vm.deleteUser(item)" ui-tooltip="删除"></i>  -->
-                        </div>
-                    </div>
-                    <div class="panel-body user-infos">
-                        <dl class="flex-box">
-                            <dt class="padding-right-10">所属地区 : </dt>
-                            <dd class="flex-1">{{item.region}}</dd>
-                            <dt class="padding-right-10">所属部门 : </dt>
-                            <dd class="flex-1">{{item.branch}}</dd>
-                        </dl>
-                        <dl class="flex-box">
-                            <dt class="padding-right-10">上线时间 : </dt>
-                            <dd class="flex-1">{{item.createTime}}</dd>
-                        </dl>
-                        <dl class="flex-box">
-                            <dt class="padding-right-10">主要用途 : </dt>
-                            <dd class="flex-1">{{item.use}}</dd>
-                        </dl>
-                        <p><strong>应用简介 : </strong></p>
-                        <p class="text-default text-dict">
-                            {{item.dict}}
-                        </p>
-                        <p class="text-right">
-                            <button class="btn btn-primary btn-sm" ng-if="item.enabled" ng-click="vm.openApp(item)">进入应用</button>
-                             <button class="btn btn-success btn-sm" ng-if="!item.enabled">申请使用</button> 
-                        </p>
-
-
-                        <!-- <div class="user-state">
-                    <strong ng-class="item.is_active?'text-info':'text-default'">活跃<i class="fa margin-left-5" ng-class="item.is_active?'fa-check-circle':'fa-times-circle'"></i></strong>
-                    <strong class="margin-left-15" ng-class="item.has_udc?'text-success':'text-default'">初始化<i class="fa margin-left-5" ng-class="item.has_udc?'fa-check-circle':'fa-times-circle'"></i></strong>
-                </div> -->
-                    </div>
+<section class="row" z-interleave>
+    <div class="col-sm-6 col-sm-4 col-lg-3 user" z-interleave-class="user-clear" ng-repeat="item in vm.usersList">
+        <div class="panel panel-border-shadow">
+            <z-more-panel open-panel="item.openMoreData"></z-more-panel>
+            <div class="panel-heading clearfix head-bg">
+                <strong class="pull-left user-name">{{::item.appname}}</strong>
+                <div class="panel-tool pull-right">
+                   
+                    <i ng-click="vm.pushLove(item)" class="fa cursor-pointer margin-right-10" ng-class="item.hasLove?'fa-heart':'fa-heart-o'" ui-tooltip="{{item.hasLove?'取消收藏':'收藏'}}"></i>
+                    <!-- <i class="fa fa-pencil cursor-pointer margin-right-10" ui-tooltip="修改" ng-click="vm.editUser(item.id)"></i>  -->
+                    <!-- <i class="fa fa-trash-o cursor-pointer" ng-click="vm.deleteUser(item)" ui-tooltip="删除"></i> -->
                 </div>
             </div>
-            <div class="text-center margin-top-10 margin-bottom-10" ng-show="!vm.usersList">
-                <ui-loading type="spin" size="sm"></ui-loading>
+            <div class="panel-body user-infos">
+                <p>
+                    <strong>应用简介 : </strong>
+                    <span class="panel-tool pull-right"><i ng-click="vm.openDetail(item);$event.stopPropagation();" class="fa fa-info-circle cursor-pointer margin-right-10" ui-tooltip="详情"></i></span>
+                </p>
+                <p class="text-default text-dict">
+                    {{::item.dict}}
+                </p>
+                <p class="text-right">
+                    <a ng-href="{{item.url}}" ng-if="item.enabled&&item.openType=='url'" target="_blank" class="btn btn-primary btn-sm">进入应用</a>
+                    <button class="btn btn-primary btn-sm" ng-if="item.enabled&&item.openType=='iframe'" ng-click="vm.openApp(item)">进入应用</button>
+                    <!-- <button class="btn btn-sm" ng-class="item.applyStatus==1?'btn-info':'btn-success'" ng-if="!item.enabled" ng-click="vm.applyFor(item)" ng-disabled="item.applyStatus==1">{{item.applyStatus==1?'申请中...':'申请使用'}}</button> -->
+                </p>
             </div>
-            <p class="text-center text-danger" ng-show="vm.usersList.length==0">无相关数据</p>
-        </section>
+        </div>
+    </div>
+</section>
+<div class="panel panel-border-shadow text-center text-danger" ng-show="vm.usersList.length==0">
+    <div class="panel-body">
+        无相关数据
+    </div>
+</div>
+<div class="panel panel-border-shadow">
+    <div class="panel-body">
+        <div class="list-loading" ng-show="vm.listLoading">
+            <ui-loading type="spin" size="sm"></ui-loading>
+        </div>
         <ui-pagination-group ng-model="vm.page.page" items-per-page="vm.page.page_size" total-items="vm.page.total" ng-change="vm.changePage()" on-refresh="vm.changePage()"></ui-pagination-group>
     </div>
 </div>

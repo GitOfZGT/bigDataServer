@@ -1,3 +1,4 @@
+import showRole from './show.role.view.html';
 class ctrl {
     constructor(zAlert, $state, $timeout, $filter, zNotification) {
         'ngInject'
@@ -33,7 +34,7 @@ class ctrl {
             ],
             hideBack: true
         }
-
+        this.showRoleHtml=showRole;
         this.page = {
                 page: 1,
                 page_size: 6,
@@ -153,13 +154,15 @@ this.getBranch();
 
     }
     getList() {
-        this.usersList = null;
+        // this.usersList = null;
+        this.listLoading=true;
         this._timeout(() => {
             var limit = this.page.page_size, //个数
                 begin = this.page.page_size * (this.page.page - 1); //从哪开始
             var result = this._filter('limitTo')(this.AppsList, limit, begin);
             this.usersList = result;
             this.page.total = this.AppsList.length;
+            this.listLoading=false;
         }, 250)
 
 

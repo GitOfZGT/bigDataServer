@@ -3,6 +3,7 @@ class Alert{
         'ngInject'
         this._modalInstance=$modalInstance;
         this.title=alert.title;
+        this.isHtml=alert.isHtml;
         this.action=alert.action;
     }
     ok(){

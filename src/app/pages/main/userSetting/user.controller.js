@@ -84,7 +84,11 @@ class ctrl {
         return staticList;
     }
     removeuser(id) {
-        var staticList = JSON.parse(localStorage.getItem('userData'));
+         this._zAlert.open({
+             title:'这个用户吗',
+             action:'删除',
+             onAction:()=>{
+                 var staticList = JSON.parse(localStorage.getItem('userData'));
         for (let i = 0; i < staticList.length; i++) {
             if (id == staticList[i].id) {
                 staticList.splice(i, 1);
@@ -95,6 +99,9 @@ class ctrl {
         }
         this.filterApp();
         this.getList();
+             }
+         })
+       
     }
     filterApp() {
         this.page.page = 1;
@@ -160,7 +167,8 @@ class ctrl {
 
     }
     getList() {
-        this.usersList = null;
+        // this.usersList = null;
+        this.listLoading=true;
         this._timeout(() => {
             var limit = this.page.page_size, //个数
                 begin = this.page.page_size * (this.page.page - 1); //从哪开始
@@ -168,6 +176,7 @@ class ctrl {
             this.usersList = result;
             // console.log(this.usersList)
             this.page.total = this.AppsList.length;
+            this.listLoading=false;
         }, 250)
 
 

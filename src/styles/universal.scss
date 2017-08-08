@@ -16,15 +16,17 @@ $bordercolor:#E6E9EA;
 
 $top-h:60px;
 %top-bgcolor {
-    background-color: $green;
+    background-image:  linear-gradient(to right, $green-deep, $green);
 }
 
 body {
     font-family: Helvetica Neue, Luxi Sans, DejaVu Sans, Tahoma, Hiragino Sans GB, STHeiti, Microsoft YaHei;
     color: #666;
+    background:#F5F5F5;
 }
 
 .popover {
+    color:$color666;
     font-family: Helvetica Neue, Luxi Sans, DejaVu Sans, Tahoma, Hiragino Sans GB, STHeiti, Microsoft YaHei;
 }
 
@@ -47,7 +49,13 @@ ul {
 .text-default{
     color:lighten($color666,15%);
 }
-
+.text-danger{
+    color: #c7254e;
+                   
+}
+.bg-danger{
+     background-color: #f9f2f4;
+}
 .cursor-pointer:hover {
     cursor: pointer;
 }
@@ -80,7 +88,25 @@ span {
 .alert-dialog .modal-dialog .alert-icon-confirm {
     color: $white;
 }
-
+.panel-heading{
+    position: relative;
+    .list-loading{
+        position: absolute;
+        top:8px;
+        left:50%;
+    }
+    &.head-bg{
+       background-image:  linear-gradient(to right, #D8EAFC, #B9F7EA);
+    }
+}
+.panel-body{
+    position: relative;
+    .list-loading{
+        position: absolute;
+        top:8px;
+        left:50%;
+    }
+}
 .panel.panel-border-shadow {
     // box-shadow: 1px 1px 5px #ccc;
     box-shadow: none;
@@ -94,12 +120,11 @@ span {
     }
     .panel-tool {
         font-size: 14px;
-        color: $green;
+        color: #434DAD;
         i {
             opacity: 0.8;
         }
         i:hover {
-            color: $green-deep;
             opacity: 1;
         }
     }

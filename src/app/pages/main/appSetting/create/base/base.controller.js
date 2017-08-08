@@ -12,7 +12,7 @@ class ctrl {
             this.app = this._parScope.app;
         } else {
             this.app = {
-                urlType: 'Iframe',
+                openType: 'iframe',
                 region: this.thisUser.region,
                 branch: this.thisUser.branch
             };
@@ -32,7 +32,7 @@ class ctrl {
 
     }
      getBranch() {
-        setTimeout(() => {
+        this._timeout(() => {
             let branch = JSON.parse(localStorage.getItem('branch'));
             branch = branch.filter((el) => {
                 if (this.app.region == el.region) {

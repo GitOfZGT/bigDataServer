@@ -1,13 +1,18 @@
-import imgsrc from '../../images/registerbg.png';
-class Controller {
-    constructor($state, $scope, httpServer,$stateParams) {
+// import imgsrc from '../../images/registerbg.png';
+
+class Controller {;
+    constructor($state, $scope,$interval,$stateParams,iframeWin) {
         "ngInject";
+       $interval.cancel($scope.$root.msgIterval);
+       iframeWin.close();
         var thisCtrl = this;
         this._state = $state;
         this._stateParams=$stateParams;
-        this.bg = {
-            login: imgsrc
-        }
+        let rootCanvas= document.getElementById('rootCanvas');
+      
+        // this.bg = {
+        //     login: imgsrc
+        // }
         thisCtrl.logindata = {};
         thisCtrl.registerdata = {};
         thisCtrl.loginReset = () => {
@@ -48,6 +53,7 @@ class Controller {
                 }
                 //如果是后台管理页面，没有管理权限，就当用户不存在
                 if(this._stateParams.entry=='admin'&&!el.permission.admin){
+                    this.errorName='此用户无管理权限。'
                     this.loginerror = true;
                     break;
                 }
@@ -61,6 +67,7 @@ class Controller {
                 this._state.go('pages.'+mainChild,{entry:this._stateParams.entry});
                 break;
             } else {
+                this.errorName='用户名或密码不正确。'
                 this.loginerror = true;
             }
         }

@@ -13,13 +13,13 @@
     <div class="form-group" ng-if="vm.super">
          <label for="" class="control-label col-md-3 col-lg-2">地区:<span class="text-danger">*</span></label>
           <div class="col-md-5 col-lg-4">
-               <z-select select-list-data="vm.regionSelectList"  select-model="vm.user.region" select-callback="vm.getBranch()"></z-select>
+               <z-select select-list-data="vm.regionSelectList"  select-model="vm.user.region" select-callback="vm.getBranch()" placeholder="--请选择地区--"></z-select>
           </div>
     </div>
     <div class="form-group" ng-if="vm.super">
          <label for="" class="control-label col-md-3 col-lg-2">部门:<span class="text-danger">*</span></label>
           <div class="col-md-5 col-lg-4">
-               <z-select select-list-data="vm.branchSelectList"  select-model="vm.user.branch"></z-select>
+               <z-select select-list-data="vm.branchSelectList"  select-model="vm.user.branch" placeholder="--请选择部门--"></z-select>
           </div>
     </div>
     <div class="form-group" ng-class="{'has-error':(createForm.username.$touched||createForm.$submitted)&&(createForm.username.$error.required)}">
@@ -28,6 +28,7 @@
             <p><span class="permission-name">应用服务管理</span><ui-switch ng-model="vm.permission.appManage" type="primary"></ui-switch></p>
             <p><span class="permission-name">用户管理</span><ui-switch ng-model="vm.permission.userManage" type="primary"></ui-switch></p>
             <p><span class="permission-name">角色管理</span><ui-switch ng-model="vm.permission.roleManage" type="primary"></ui-switch></p>
+            <p><span class="permission-name">审批中心</span><ui-switch ng-model="vm.permission.approveManage" type="primary"></ui-switch></p>
         </div>
      
     </div>

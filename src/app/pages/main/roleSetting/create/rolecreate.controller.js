@@ -21,6 +21,7 @@ class ctrl {
         this.super = this.thisUser.permission.super;
          this.region = JSON.parse(localStorage.getItem('region'));
         //地区选择框
+        this.region.unshift({name:''});
         this.regionSelectList = this.region;
         this.branchSelectList = [{name:''}];
         this.user = {
@@ -31,14 +32,15 @@ class ctrl {
         this.permission = {
             appManage: false,
             userManage: false,
-            roleManage: false
+            roleManage: false,
+            approveManage:false
         }
         this.btnName = '创建';
         this.getBranch();
 
     }
      getBranch() {
-        setTimeout(() => {
+        this._timeout(() => {
             let branch = JSON.parse(localStorage.getItem('branch'));
             branch = branch.filter((el) => {
                 if (this.user.region == el.region) {

@@ -15,7 +15,7 @@
         <label for="" class="control-label col-md-3 col-lg-2">所属地区:<span class="text-danger">*</span></label>
         <div class="col-md-5 col-lg-4">
             <div ng-if="!vm.super"> <input ng-model="vm.app.region" name="region" type="text" class="form-control" required disabled></div>
-           <z-select ng-if="vm.super" select-list-data="vm.regionSelectList"  select-model="vm.app.region" select-callback="vm.getBranch()"></z-select>
+           <z-select ng-if="vm.super" select-list-data="vm.regionSelectList"  select-model="vm.app.region" select-callback="vm.getBranch()" placeholder="--请选择地区--"></z-select>
             <!--<div class="text-danger font-size-12 margin-top-5">有效用户名</div>-->
         </div>
         <div class="control-label col-md-4 col-lg-6">
@@ -26,7 +26,7 @@
         <label for="" class="control-label col-md-3 col-lg-2">所属部门:<span class="text-danger">*</span></label>
         <div class="col-md-5 col-lg-4">
             <div ng-if="!vm.super"><input ng-model="vm.app.branch" name="branch" type="text" class="form-control" required disabled></div>
-            <z-select ng-if="vm.super" select-list-data="vm.branchSelectList"  select-model="vm.app.branch"></z-select>
+            <z-select ng-if="vm.super" select-list-data="vm.branchSelectList"  select-model="vm.app.branch" placeholder="--请选择部门--"></z-select>
             <!--<div class="text-danger font-size-12 margin-top-5">有效用户名</div>-->
         </div>
         <div class="control-label col-md-4 col-lg-6">
@@ -46,9 +46,9 @@
     <div class="form-group">
         <label for="" class="control-label col-md-3 col-lg-2">接入类型:<span class="text-danger">*</span></label>
         <div class="col-md-5 col-lg-4" style="padding-top:7px;">
-            <ui-radio-group ng-model="vm.app.urlType">
-                <ui-radio value="'Iframe'" class="margin-right-10">Iframe嵌入</ui-radio>
-                <ui-radio value="'Url'" class="margin-right-10">Url跳转</ui-radio>
+            <ui-radio-group ng-model="vm.app.openType">
+                <ui-radio value="'iframe'" class="margin-right-10">Iframe嵌入</ui-radio>
+                <ui-radio value="'url'" class="margin-right-10">Url跳转</ui-radio>
             </ui-radio-group>
         </div>
     </div>

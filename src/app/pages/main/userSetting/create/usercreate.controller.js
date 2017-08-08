@@ -49,7 +49,7 @@ class ctrl {
         this.getBranch();
     }
     getBranch() {
-        setTimeout(() => {
+        this._timeout(() => {
             let branch = JSON.parse(localStorage.getItem('branch'));
             branch = branch.filter((el) => {
                 if (this.user.region == el.region) {
@@ -83,7 +83,8 @@ class ctrl {
                 password: this.user.password,
                 enbleRemove: true,
                 useApp:[],
-                loveApp:[]
+                loveApp:[],
+                applyApp:[]
             }
 
             userArr.push(user);

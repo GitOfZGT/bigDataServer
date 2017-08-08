@@ -1,5 +1,6 @@
 <section login-bg class="login-box">
-    <img ng-src="{{vm.bg.login}}" class="login-bg" alt="">
+    <!-- <img ng-src="{{vm.bg.login}}" class="login-bg" alt=""> -->
+    <z-login-canvas></z-login-canvas>
     <div class="login-title">
         <header class="logo">
                  <span class="fa-stack fa-lg">
@@ -16,7 +17,7 @@
             <div class="content-name">登录</div>
 
             <div class="form-group">
-                <p class="text-danger show-error" ng-show="vm.loginerror">用户名或密码不正确。</p>
+                <p class="text-danger show-error" ng-show="vm.loginerror">{{vm.errorName}}</p>
                 <input ng-focus="vm.focus()" type="text" name="username" ng-model="vm.logindata.username" class="form-control" id="" placeholder="用户名" required>
             </div>
             <div class="form-group">

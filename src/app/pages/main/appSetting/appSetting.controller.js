@@ -1,11 +1,12 @@
 class ctrl {
-    constructor(zAlert, $state, $timeout, $filter) {
+    constructor(zAlert, $state, $timeout, $filter,appDetails) {
         'ngInject'
 
         this._zAlert = zAlert;
         this._state = $state;
         this._timeout = $timeout;
         this._filter = $filter;
+        this._appDetails=appDetails;
         this.searchWord = '';
         this.region = JSON.parse(localStorage.getItem('region'));
         // branch = JSON.parse(localStorage.getItem('branch')),
@@ -33,30 +34,33 @@ class ctrl {
 
         this.page = {
             page: 1,
-            page_size: 6,
+            page_size: 12,
             total: 0
         }
 
         //筛选项：
         this.filtrate = {
-            keyword: '',
-            region: '全部',
-            branch: '全部',
-            use: '全部'
-        }
-        // this.selectRegion('region', this.region[0]);
+                keyword: '',
+                region: '全部',
+                branch: '全部',
+                use: '全部'
+            }
+            // this.selectRegion('region', this.region[0]);
         this.getThisUser();
-         this.myBranch();
+        this.myBranch();
+    }
+    openDetail(item) {
+        this._appDetails.open(item);
     }
     getThisUser() {
         this.User = JSON.parse(sessionStorage.getItem('thisUser'));
         this.super = this.User.permission.super;
         this.getApps();
     }
-     getApps() {
+    getApps() {
         let allapp = JSON.parse(localStorage.getItem('appList'));
         this.Apps = allapp.filter((el) => {
-            
+
             return true;
         });
         this.filterApp();
@@ -145,7 +149,7 @@ class ctrl {
                 if (this.isMyBranch) {
                     element.enabelEdit = true;
                     element.enabelRemove = true;
-                }else{
+                } else {
                     element.enabelEdit = false;
                     element.enabelRemove = false;
                 }
@@ -197,13 +201,15 @@ class ctrl {
 
     }
     getList() {
-        this.usersList = null;
+        // this.usersList = null;
+        this.listLoading = true;
         this._timeout(() => {
             var limit = this.page.page_size, //个数
                 begin = this.page.page_size * (this.page.page - 1); //从哪开始
 
             this.usersList = this._filter('limitTo')(this.AppsList, limit, begin);
             this.page.total = this.AppsList.length;
+            this.listLoading = false;
         }, 250)
 
 

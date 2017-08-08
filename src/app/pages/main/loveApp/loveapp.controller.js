@@ -1,12 +1,15 @@
 class ctrl {
-    constructor(zAlert, $state, $timeout, $filter, zNotification) {
+    constructor(zAlert, $state, $timeout, $filter, zNotification, applyFor, iframeWin,appDetails) {
         'ngInject'
 
         this._zAlert = zAlert;
         this._state = $state;
         this._timeout = $timeout;
         this._filter = $filter;
+        this._applyFor = applyFor;
+        this._iframeWin = iframeWin;
         this._zNotification = zNotification;
+        this._appDetails=appDetails;
 
         this.searchWord = '';
 
@@ -26,7 +29,7 @@ class ctrl {
 
         this.page = {
             page: 1,
-            page_size: 6,
+            page_size: 12,
             total: 0
         }
 
@@ -38,6 +41,9 @@ class ctrl {
 
         this.getList();
 
+    }
+      openDetail(item){
+        this._appDetails.open(item);
     }
     setUsers() {
         sessionStorage.setItem('thisUser', JSON.stringify(this.User));
@@ -63,6 +69,9 @@ class ctrl {
                 if (this.User.useApp.indexOf(el.id) > -1) {
                     el.enabled = true;
                 }
+                if (this.User.applyApp.indexOf(el.id) > -1) {
+                    el.applyStatus = 1;
+                }
                 return true;
             }
         });
@@ -74,13 +83,13 @@ class ctrl {
             action: '移除',
             onAction: () => {
                 let loveList = this.User.loveApp;
-                let i=loveList.indexOf(item.id);
-                if(i>-1){
+                let i = loveList.indexOf(item.id);
+                if (i > -1) {
                     loveList.splice(i, 1);
-                        this.setUsers();
-                        this._zNotification.success('移除收藏成功');
+                    this.setUsers();
+                    this._zNotification.success('移除收藏成功');
                 }
-              
+
                 this.getThisUser();
                 this.getList();
             }
@@ -124,6 +133,13 @@ class ctrl {
     }
     changePage() {
         this.getList();
+    }
+
+    applyFor(item) {
+        this._applyFor.applyAlert(item);
+    }
+    openApp(item) {
+        this._iframeWin.open(item);
     }
 }
 

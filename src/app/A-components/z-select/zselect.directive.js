@@ -30,7 +30,7 @@ function zSelect($timeout, easingMap) {
                 }
             }
             scope.$watch(()=>scope.selectModel,(o,n)=>{
-                    setTimeout(()=>{
+                    $timeout(()=>{
                          scope.selectName = scope.selectModel;
                     })
                     

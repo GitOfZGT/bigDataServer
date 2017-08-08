@@ -105,7 +105,15 @@ class ctrl {
         this.btnLoading = true;
         setTimeout(() => {
             var apps = JSON.parse(localStorage.getItem('appList'));
+            var id=0;
+            if(apps.length>0)
+            apps.forEach((el)=>{
+                if(el.id>id){
+                    id=el.id;
+                }
+            });
             var capp = {
+                id,
                 createTime: this._filter('date')(new Date().getTime(), 'yyyy-MM-dd'),
                 use: '用途1',
                 region: this.app.region,
@@ -114,9 +122,21 @@ class ctrl {
                 dict: this.app.dict,
                 url:this.app.url,
                 hasLove: false,
-                enabled: true,
-                openBranch: this.chosion.hasSelet
+                enabled: false,
+               openType:this.app.openType
             }
+            if(this.setting==2){
+                 capp.openBranch= this.chosion.hasSelet;
+            }
+            this.User.useApp.push(id);
+            var users=JSON.parse(localStorage.getItem('userData'));
+            for(var i=0;i<users.length;i++){
+                if(this.User.id==users[i].id){
+                    users.splice(i,1,this.User);
+                    break;
+                }
+            }
+            localStorage.setItem('userData', JSON.stringify(users));
             apps.unshift(capp);
             localStorage.setItem('appList', JSON.stringify(apps));
             this.btnLoading = false;

@@ -1,12 +1,15 @@
 class ctrl {
-    constructor(zAlert, $state, $timeout, $filter, zNotification) {
+    constructor(zAlert, $state, $timeout, $filter, zNotification,applyFor,iframeWin,appDetails) {
         'ngInject'
 
         this._zAlert = zAlert;
         this._state = $state;
         this._timeout = $timeout;
+        this._iframeWin=iframeWin;
+        this._appDetails=appDetails;
         this._filter = $filter;
         this._zNotification = zNotification;
+        this._applyFor=applyFor;
         this.searchWord = '';
         this.region = JSON.parse(localStorage.getItem('region'));
         // branch = JSON.parse(localStorage.getItem('branch')),
@@ -34,7 +37,7 @@ class ctrl {
 
         this.page = {
             page: 1,
-            page_size: 6,
+            page_size: 12,
             total: 0
         }
 
@@ -49,6 +52,12 @@ class ctrl {
         this.getThisUser();
         // this.selectRegion('region', this.region[0]);
         this.myBranch();
+    }
+    openDetail(item){
+        this._appDetails.open(item);
+    }
+     openApp(item) {
+        this._iframeWin.open(item);
     }
     setUsers() {
         sessionStorage.setItem('thisUser', JSON.stringify(this.User));
@@ -74,6 +83,9 @@ class ctrl {
             }
             if (this.User.useApp.indexOf(el.id) > -1) {
                 el.enabled = true;
+            }
+            if (this.User.applyApp.indexOf(el.id) > -1) {
+                el.applyStatus = 1;
             }
             return true;
 
@@ -255,19 +267,25 @@ class ctrl {
 
     }
     getList() {
-        this.usersList = null;
+        // this.usersList = null;
+        this.listLoading=true;
         this._timeout(() => {
             var limit = this.page.page_size, //个数
                 begin = this.page.page_size * (this.page.page - 1); //从哪开始
             var result = this._filter('limitTo')(this.AppsList, limit, begin);
             this.usersList = result;
             this.page.total = this.AppsList.length;
+            this.listLoading=false;
         }, 250)
 
 
     }
     changePage() {
         this.getList();
+    }
+
+    applyFor(item){
+        this._applyFor.applyAlert(item);
     }
 }
 

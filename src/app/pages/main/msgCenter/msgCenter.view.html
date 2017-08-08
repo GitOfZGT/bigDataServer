@@ -1,0 +1,39 @@
+<z-page-header header-info="vm.headInfo"></z-page-header>
+
+<div class="panel panel-border" ng-repeat="item in vm.msgList track by $index">
+    <div class="panel-body clearfix" ng-if="item.type=='apply'">
+        <div class="pull-left">
+            <span class="text-primary margin-right-10">{{$index+1}}</span>
+            <span class="margin-right-15">{{item.createTime}}</span>
+            <span class="text-info">{{item.user.region+'-'+item.user.branch}}</span>
+            <span>的</span>
+            <span class="text-danger">{{item.user.userName}}</span>
+            <span>申请使用</span>
+            <span class="text-danger">{{item.app.appname}}</span>
+        </div>
+        <div class="pull-right">
+            <a href="" class="btn btn-success btn-xs" ui-sref="pages.approveCenter">前往审批中心</a>
+        </div>
+    </div>
+    <div class="panel-body clearfix" ng-if="item.type=='feedback'">
+        <div class="pull-left">
+            <span class="text-primary margin-right-10">{{$index+1}}</span>
+            <span class="margin-right-15">{{item.createTime}}</span>
+            <span>您向</span>
+            <span class="text-info">{{item.app.region+'-'+item.app.branch}}</span>
+            <span>申请使用的</span>
+            <span class="text-danger">{{item.app.appname}}</span>
+            <span class="text-primary margin-left-15">{{item.action==1?'已被批准':'已被拒绝'}}</span>
+            <span ng-show="item.action==1" class="margin-left-10">请重新登录</span>
+        </div>
+         <div class="pull-right">
+            <button type="button" class="btn btn-primary-hoverborder btn-xs" ng-click="vm.hasRead(item)" ng-disabled="item.hasRead">{{item.hasRead?'已读':'标记已读'}}</button>
+        </div> 
+    </div>
+</div>
+
+<div class="panel panel-border" ng-show="vm.msgList&&vm.msgList.length==0">
+    <div class="panel-body text-danger">
+        无消息
+    </div>
+</div>

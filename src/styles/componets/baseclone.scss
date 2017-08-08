@@ -41,20 +41,24 @@
                     //  border: 1px solid lighten($color666, 40%);
                 }
                 &.active {
-                    height: 26px;
-                    line-height: 26px;
-                    padding: 0 14px;
-                    border: 1px solid lighten($color666, 40%);
-                    color: #E4393C;
+                    font-size: 90%;
+                    color: #c7254e;
+                    background-color: #f9f2f4;
+                    border-radius: 4px;
+                    // height: 26px;
+                    // line-height: 26px;
+                    // padding: 0 14px;
+                    // border: 1px solid lighten($color666, 40%);
+                    // color: #E4393C;
                 }
                 &.re-hover {
                     .remove {
                         visibility: hidden;
                     }
                     &:hover {
-                        height: 26px;
-                        line-height: 26px;
-                        padding: 0 14px;
+                        // height: 26px;
+                        // line-height: 26px;
+                        // padding: 0 14px;
                         border: 1px solid lighten($color666, 40%);
                         color: #E4393C;
                         .remove {
@@ -63,9 +67,9 @@
                     }
                 }
                 &.add {
-                    height: 26px;
-                    line-height: 26px;
-                    padding: 0 14px;
+                    // height: 26px;
+                    // line-height: 26px;
+                    // padding: 0 14px;
                     border: 1px solid lighten($color666, 40%);
                     &:hover {
                         border-color: $green;

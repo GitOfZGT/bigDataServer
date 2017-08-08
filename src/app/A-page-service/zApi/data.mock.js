@@ -3,13 +3,13 @@ import Mock from 'mockjs';
     if (localStorage.getItem('userData') != undefined) {
         return;
     }
-    localStorage.removeItem('region');
-    localStorage.removeItem('branch');
-    localStorage.removeItem('use');
-    localStorage.removeItem('appList');
-    localStorage.removeItem('superRole');
-    localStorage.removeItem('roleData');
-    localStorage.removeItem('userData');
+    // localStorage.removeItem('region');
+    // localStorage.removeItem('branch');
+    // localStorage.removeItem('use');
+    // localStorage.removeItem('appList');
+    // localStorage.removeItem('superRole');
+    // localStorage.removeItem('roleData');
+    // localStorage.removeItem('userData');
     let region = [{ "name": "省级", "code": "440000" }, { "name": "广州市", "code": "440100" }, { "name": "韶关市", "code": "440200" }, { "name": "深圳市", "code": "440300" }, { "name": "珠海市", "code": "440400" }, { "name": "汕头市", "code": "440500" }, { "name": "佛山市", "code": "440600" }, { "name": "江门市", "code": "440700" }, { "name": "湛江市", "code": "440800" }, { "name": "茂名市", "code": "440900" }, { "name": "肇庆市", "code": "441200" }, { "name": "惠州市", "code": "441300" }, { "name": "梅州市", "code": "441400" }, { "name": "汕尾市", "code": "441500" }, { "name": "河源市", "code": "441600" }, { "name": "阳江市", "code": "441700" }, { "name": "清远市", "code": "441800" }, { "name": "东莞市", "code": "441900" }, { "name": "中山市", "code": "442000" }, { "name": "潮州市", "code": "445100" }, { "name": "揭阳市", "code": "445200" }, { "name": "云浮市", "code": "445300" }],
         branchs = [{ name: '工商局' }, { name: '民政局' }, { name: '税务局' }, { name: '公安局' }, { name: '国税局' }],
         use = [{ name: '用途1' }, { name: '用途2' }, { name: '用途3' }];
@@ -67,7 +67,14 @@ import Mock from 'mockjs';
                 },
                 "url": "https://www.baidu.com",
                 "hasLove": false,
-                "enabled": false
+                "enabled": false,
+                "openType":function(){
+                    if(Math.round(Math.random())>0){
+                        return 'iframe';
+                    }else{
+                        return 'url';
+                    }
+                }
             }]
         })
         // 时间排序
@@ -104,6 +111,7 @@ import Mock from 'mockjs';
                 "appManage": true,
                 "userManage": true,
                 "roleManage": true,
+                "approveManage":true,
                 "admin": true
             },
             "region": "通用",
@@ -197,7 +205,8 @@ import Mock from 'mockjs';
                 }
 
                 return appids;
-            }
+            },
+            "applyApp":[]
         }]
 
     })
@@ -217,7 +226,15 @@ import Mock from 'mockjs';
         "roleName": "超级管理员",
         "userName": "superAdmin",
         "useApp": allid,
-        "loveApp": []
+        "loveApp": [],
+        "applyApp":[]
     }])
+    //用户数据
     localStorage.setItem('userData', JSON.stringify(userData.list));
+    //申请消息：
+    localStorage.setItem('applyForMsg',JSON.stringify([]));
+    //反馈消息
+    localStorage.setItem('feedbackMsg',JSON.stringify([]));
+    //审批数据
+    localStorage.setItem('approves',JSON.stringify([]));
 })();

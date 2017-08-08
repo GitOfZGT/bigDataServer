@@ -1,0 +1,44 @@
+<z-page-header header-info="vm.headInfo"></z-page-header>
+
+<div class="panel panel-border">
+    <div class="panel-heading">
+        列表
+    </div>
+    <div class="panel-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width:20%;">来源</th>
+                    <th style="width:30%;">内容</th>
+                    <th style="width:20%;">状态</th>
+                    <th style="width:20%;">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in vm.msgList track by $index">
+                    <td><span>{{item.user.region+'-'+item.user.branch}}</span></td>
+                    <td><span class="text-primary">{{item.user.userName}}</span><span>申请使用</span><span class="text-primary">{{item.app.appname}}</span></td>
+                    <td>
+                        <span ng-show="item.status==1" class="text-info">未审批</span>
+                        <span ng-show="item.status==2" class="text-success">已审批</span>
+                        <span ng-show="item.status==3" class="text-danger">已拒绝</span>
+                        <span ng-show="item.status!=1" class="margin-left-10">操作人：<span class="text-primary">{{item.approveUser.userName}}</span></span>
+                    </td>
+                    <td>
+                        <span ng-if="item.status==1">
+                    <a href="" class="text-success" ng-click="vm.approve(item)">批准</a>
+                    <a href="" class="margin-left-15 text-danger" ng-click="vm.refuse(item)">拒绝</a>
+                    </span>
+
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <p class="text-center text-danger" ng-show="vm.msgList.length==0">无相关数据</p>
+        <div class="text-center margin-top-10 margin-bottom-10" ng-show="!vm.msgList">
+            <ui-loading type="spin" size="sm"></ui-loading>
+        </div>
+        <ui-pagination-group ng-model="vm.page.page" items-per-page="vm.page.page_size" total-items="vm.page.total" ng-change="vm.changePage()" on-refresh="vm.changePage()"></ui-pagination-group>
+    </div>
+</div>

@@ -23,7 +23,8 @@ class zAlert {
                 alert: () => {
                     return {
                         title: opt.title,
-                        action: opt.action
+                        action: opt.action,
+                        isHtml:opt.isHtml
                     }
                 }
             }

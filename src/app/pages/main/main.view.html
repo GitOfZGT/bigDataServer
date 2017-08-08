@@ -1,20 +1,20 @@
 <aside class="side-bar">
     <header class="bar-top logo">
 
-        <div class="main-title">
+        <div class="main-title" ui-tooltip-placement="right" ui-tooltip="{{vm.admin}}" ui-tooltip-trigger="mouseenter" ui-tooltip-append-to-body="false">
             <span class="fa-stack fa-lg">
         <i class="fa fa-recycle fa-stack-2x" style="font-size:3em;"></i>
         <!-- <i class="fa fa-database fa-stack-1x" style="color:#fff;"></i> -->
         </span>
-            <span class="logo">大数据应用服务框架</span>
-            <div class="main-little-title" ng-if="vm.admin">(后台管理)</div>
+            <!-- <span class="logo">大数据应用服务框架</span>
+            <div class="main-little-title" ng-if="vm.admin">(后台管理)</div> -->
         </div>
 
 
     </header>
     <section class="bar-body">
         <!--<ui-navigation expanded="all" links="vm.linkdata" type="navigation-verticle-1"></ui-navigation>-->
-        <z-main-nav class="margin-top-20" nav-data="vm.linkdata"></z-main-nav>
+         <z-main-nav-min class="margin-top-20" nav-data="vm.linkdata"></z-main-nav-min> 
     </section>
 </aside>
 <div class="mains">
@@ -34,9 +34,13 @@
             <i class="fa fa-superpowers"></i>
             <span>{{vm.power}}</span>
         </div>
-        <div class="pull-right msg">
-            <span ui-><i class="fa fa-commenting-o"></i></span>
-            <!-- <span class="msg-Num text-danger">1</span> -->
+        <!-- <div class="pull-right msg" popover-title="消息列表" popover-placement="bottom" ui-popover-template="vm.msgHtml" popover-trigger="click">
+            <span><i class="fa fa-commenting-o"></i></span>
+             <span class="msg-Num text-danger">{{vm.msgLen}}</span> 
+        </div> -->
+        <div class="pull-right msg" ui-sref="pages.msgCenter">
+            <span><i class="fa fa-commenting-o"></i></span>
+             <span class="msg-Num text-danger">{{vm.msgLen}}</span> 
         </div>
     </header>
     <section class="main-body" ui-view>
@@ -48,4 +52,38 @@
         </div>
         <iframe id="iframeWin" src=""></iframe>
     </section>
+    <aside class="main-right" id="maInAside">
+        <div class="panel panel-border-shadow">
+            <div class="panel-heading" style="background:#f1f1f1;">
+                应用详情
+                <div class="pull-right">
+                    <i class="fa fa-times cursor-pointer" ng-click="vm.closeAppDetail()"></i>
+                </div>
+            </div>
+            <div class="panel-body user-infos">
+                <dl class="flex-box">
+                    <dt class="padding-right-10">应用名称 : </dt>
+                    <dd class="flex-1"> {{vm.appDetailInfo.item.appname}}</dd>
+                </dl>
+                  <dl class="flex-box">
+                    <dt class="padding-right-10">地区 : </dt>
+                    <dd class="flex-1">{{vm.appDetailInfo.item.region}}</dd>
+                </dl>
+                <dl class="flex-box">
+                    <dt class="padding-right-10">部门 : </dt>
+                    <dd class="flex-1">{{vm.appDetailInfo.item.branch}}</dd>
+                </dl>
+                <dl class="flex-box">
+                    <dt class="padding-right-10">上线时间 : </dt>
+                    <dd class="flex-1">{{vm.appDetailInfo.item.createTime}}</dd>
+                </dl>
+                <dl class="flex-box">
+                    <dt class="padding-right-10">接入类型 : </dt>
+                    <dd class="flex-1"><code>{{vm.appDetailInfo.item.openType}}</code></dd>
+                </dl> 
+                <p><strong>简介：</strong></p>
+                 <p class="text-dict" style="height:auto;">{{vm.appDetailInfo.item.dict}}</p>
+            </div>
+        </div>
+    </aside>
 </div>
